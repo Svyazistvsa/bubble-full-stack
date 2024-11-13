@@ -1,0 +1,180 @@
+:root {
+    --darkGreen: #264653;
+    --green: #2a9d8f;
+    --yellow: #e9c46a;
+    --orange: #f4a261;
+    --darkOrange: #e76f51;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--yellow);
+}
+
+#screen {
+    background: linear-gradient(0deg, var(--darkGreen) 1%, var(--green));
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -100;
+}
+
+#all {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    max-width: 1920px;
+    margin: auto;
+    min-width: 1480px;
+}
+
+#page {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    min-height: 650px;
+}
+
+nav, aside {
+    flex-grow: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+main {
+    flex-grow: 4;
+    background-color: white;
+    filter: blur(3px);
+    opacity: 0.8;
+    min-width: 1080px;
+}
+
+header {
+    transition: background-position-y 1s;
+    height: 180px;
+    min-width: 750px;
+    margin: 5px auto;
+    border: solid 2px var(--orange);
+    border-radius: 10px;
+    background: linear-gradient(0deg, var(--orange) 0%, var(--darkOrange) 50%, var(--orange) 100%);
+    background-size: 270px;
+}
+
+header:hover {
+    background-position-y: 135px;
+}
+
+.logo {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    top: 5px;
+    left: -15px;
+    background-color: var(--yellow);
+    border: 4px solid var(--darkOrange);
+    border-radius: 130px;
+}
+
+.logo > h1 {
+    position: relative;
+    left: -30px;
+    top: 30px;
+    width: 100px;
+    font-size: 35pt;
+    color: var(--darkGreen);
+    text-shadow: var(--darkOrange) 1px 0px, var(--darkOrange) 0px 1px, var(--darkOrange) 0px -1px, var(--darkOrange) -1px 0px;
+}
+
+header > h3 {
+    position: relative;
+    width: 307px;    
+    margin: -5px auto 5px;
+    background-color: var(--yellow);
+    border: 1px solid var(--darkOrange);
+    border-radius: 15px;
+    color: var(--darkGreen);
+    text-shadow: var(--darkOrange) 1px 0px, var(--darkOrange) 0px 1px, var(--darkOrange) 0px -1px, var(--darkOrange) -1px 0px;
+}
+
+header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
+    background-color: var(--yellow);
+    border: 1px solid var(--darkOrange);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#subMenu {
+    position: relative;
+    left: 40px;
+}
+
+#mainMenu {
+    position: relative;
+    left: 40px;
+}
+
+.mainMenu > li {    
+    list-style-type: none;
+    min-width: 100px;
+    max-width: 200px;
+}
+
+footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(0deg, var(--darkOrange) 1%, var(--orange));
+}
+
+.myGit > a {
+    display: block;
+    margin: 10% auto auto 10%;
+    width: 100%;
+    height: 100%;
+    font-size: 20pt;
+    color: #333;
+    background-color: #999;
+    border: 4px solid #333;
+    border-radius: 50px;
+}
+
+.date {
+    font-size: 13pt;
+}
+
+/* Для браузеров Firefox */
+@-moz-document url-prefix() {
+    header > h3 {
+        font-size: 12pt;
+        width: 350px;
+    }
+    .myGit > a {
+        font-size: 18pt;
+    }   
+}
+
+.hov {
+    animation: shake 1s ease;
+}
+
+@keyframes shake {
+    30% {
+        transform: scaleX(1.07) scaleY(1.05);
+    }
+    60% {
+        transform: scaleX(1.05) scaleY(1.07);
+    }
+    70% {
+        transform: scaleX(1.04) scaleY(1.02);
+    }
+    100% {
+        transform: scaleX(1) scaleY(1);
+    }
+}

@@ -1,0 +1,50 @@
+:root {
+    --castomD: 0;
+    --castomL: 0;
+}
+
+.backB {
+    width: var(--castomD);
+    height: var(--castomD);
+    left: var(--castomL);
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(148, 219, 211, 0.3);
+    border: solid 1px #192e36;
+    border-radius: 50%;
+    box-shadow: inset -5px -5px 5px #2a9d8f, inset 5px 5px 5px #192e36;
+    animation: appearance 2.5s forwards, ascent 2s ease-in 2.5s forwards;
+}
+
+@keyframes appearance {
+    0% {
+        transform: scaleX(0.01) scaleY(0.01);
+        bottom: calc(var(--castomD) / -2);
+    }
+    100% {
+        transform: scaleX(1) scaleY(1);
+        bottom: 0;
+    }
+}
+
+@keyframes ascent {
+    0% {
+        bottom: 0;
+        transform: scaleX(0.8) scaleY(1.2);
+    }
+    10% {
+        bottom: calc(var(--castomD) / 10);
+        transform: scaleX(1.2) scaleY(0.8);
+    }
+    20% {
+        bottom: calc(var(--castomD) / 8);
+        transform: scaleX(0.9) scaleY(1.1);
+    }
+    30% {
+        bottom: calc(var(--castomD) / 6);
+        transform: scaleX(0.95) scaleY(1.05);
+    }
+    100% {
+        bottom: 125%;
+    }
+}
