@@ -54,11 +54,11 @@ main {
 
 header {
     transition: background-position-y 1s;
-    height: 180px;
-    min-width: 750px;
-    margin: 5px auto;
-    border: solid 2px var(--orange);
-    border-radius: 10px;
+    height: 80px;
+    min-width: 100%;
+    margin: 50px 0 5px 0;
+    border: solid 1px var(--orange);
+    border-radius: 5px;
     background: linear-gradient(0deg, var(--orange) 0%, var(--darkOrange) 50%, var(--orange) 100%);
     background-size: 270px;
 }
@@ -71,8 +71,8 @@ header:hover {
     position: relative;
     width: 130px;
     height: 130px;
-    top: 5px;
-    left: -15px;
+    top: px;
+    left: 50px;
     background-color: var(--yellow);
     border: 4px solid var(--darkOrange);
     border-radius: 130px;
