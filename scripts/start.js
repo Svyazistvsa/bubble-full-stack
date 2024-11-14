@@ -19,29 +19,24 @@ async function getOS() {
             } else if (!os && /Linux/.test(platform)) {
                 os = 'pc';
             }
-alert(os);
-            try {
+
+            
                 let response = await fetch("https://localhost:3000", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ os: os }), 
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Ошибка HTTP! статус: ${response.status}`);
+                });  
+                
+                if (response.ok) {
+                    const newDocument = await response.text();
+                    document.open();
+                    document.write(newDocument);
+                    document.close();
+                } else {
+                    console.error('Ошибка при отправке запроса:', response.status);
                 }
-
-                let stylesheet = await response.text();
-                let link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = stylesheet; 
-                document.head.appendChild(link);
-            } catch (error) {
-                console.error('Ошибка при получении данных', error);
-            }
         }
 
         window.onload = getOS;

@@ -13,19 +13,20 @@ app.use(bodyParser.json());
 app.use('/css', express.static(path.join(__dirname, 'css')));
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'scout.html'));
 });
 
 app.post('/', (req, res) => {
+
     switch (req.body.os) {
         case "pc":
-            base = 'main_d.css';
+            base = '/desctop/index.html';
             break;
         case "mobile":
-            base = 'main_m.css';
+            base = '/mobile/index.html';
             break;
     }
-    res.send(`/css/desctop/${base}`); 
+    res.sendFile(path.join(__dirname, 'css', base));
 });
 
 const options = {
