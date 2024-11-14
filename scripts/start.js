@@ -19,7 +19,7 @@ async function getOS() {
             } else if (!os && /Linux/.test(platform)) {
                 os = 'pc';
             }
-
+alert(os);
             try {
                 let response = await fetch("https://localhost:3000", {
                     method: 'POST',
