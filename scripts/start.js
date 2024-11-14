@@ -28,7 +28,7 @@ async function getOS() {
                     },
                     body: JSON.stringify({ os: os }), 
                 });  
-                
+                alert(os);
                 if (response.ok) {
                     const newDocument = await response.text();
                     document.open();
