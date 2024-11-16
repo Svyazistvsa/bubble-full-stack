@@ -1,9 +1,12 @@
 "use strict"
 
 let all = document.querySelector("#all");
+const allOut = document.querySelectorAll(".out");
 
-all.addEventListener("mouseover", (e) => {
-    if(e.target.classList.contains("out")) e.target.classList.add("hov");
+allOut.forEach((item) => {
+    item.addEventListener("mouseover", (e) => {
+        e.currentTarget.classList.add("hov");
+    })
 })
 
 all.addEventListener("animationend", (e) => {

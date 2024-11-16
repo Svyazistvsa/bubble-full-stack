@@ -9,12 +9,6 @@ allOut.forEach((item) => {
     })
 })
 
-
-
-//all.addEventListener("click", (e) => {
-//    if(e.target.classList.contains("out")) e.target.classList.add("hov");
-//}, true)
-
 all.addEventListener("animationend", (e) => {
     if(e.animationName == "shake") e.target.classList.remove("hov");
 })
