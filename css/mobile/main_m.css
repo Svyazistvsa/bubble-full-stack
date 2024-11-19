@@ -126,7 +126,7 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
 footer {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 70px;
@@ -153,6 +153,8 @@ footer {
 }
 
 .date {
+    position: relative;
+    right: 20px;
     font-size: 13pt;
 }
 

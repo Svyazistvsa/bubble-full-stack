@@ -8,14 +8,6 @@ const port = 3000;
 let base = 'main_d.css';
 
 app.use((req, res, next) => {
-    //const allowedOrigins = [
-    //    "https://bubble.svyazist.cloudpub.ru:443",
-    //    "https://localhost:3000" // Добавьте локальный хост
-    //];
-    //const origin = req.headers.origin;
-    //if (allowedOrigins.includes(origin)) {
-    //    res.header("Access-Control-Allow-Origin", origin);
-    //}
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type");
@@ -32,6 +24,9 @@ app.use(bodyParser.json());
 app.use('/css', express.static(path.join(__dirname, 'css')));
 
 app.get("/", (req, res) => {
+    if(req.body.menu === "menu"){
+        
+    }
     res.sendFile(path.join(__dirname, 'scout.html'));
 });
 
