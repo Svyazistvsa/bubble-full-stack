@@ -25,7 +25,11 @@ app.use('/css', express.static(path.join(__dirname, 'css')));
 
 app.get("/", (req, res) => {
     if(req.body.menu === "menu"){
-        
+        fs.readdir(path.join(__dirname + 'content'),(err, files) => {
+            if(err){
+                throw err;
+            }
+        } )
     }
     res.sendFile(path.join(__dirname, 'scout.html'));
 });
