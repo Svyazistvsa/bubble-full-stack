@@ -5,7 +5,9 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const port = 3000;
+const cheerio = require('cheerio');
 let base = 'main_d.css';
+let main_arr;
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -22,14 +24,31 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use(
+    fs.readdir(path.join(__dirname, 'content'),(err, files) => {
+        let zag;
+        if(err){
+            throw err;
+        }
+        main_arr = [`<li class="out main_content">Главная страница</li>`];
+        files.forEach((elem) =>{
+            fs.readFile(path.join(__dirname, 'content', elem ), 'utf8', (err, elem) => {
+                if(err) {
+                    console.error("Ошибка при чтении файла:", err);
+                    return;
+                }
+                const $ = cheerio.load(elem);
+                zag = $("h1").text();
+            });
+            main_arr.push(`<li class="out">${zag}</li>`);
+        })
+        main_arr.push(`<li class="out relacs">Релакс</li>`);
+    })
+);
 
-app.get("/", (req, res) => {
+app.get("/", (req, res) => {    
     if(req.body.menu === "menu"){
-        fs.readdir(path.join(__dirname + 'content'),(err, files) => {
-            if(err){
-                throw err;
-            }
-        } )
+        res.send(main_arr);
     }
     res.sendFile(path.join(__dirname, 'scout.html'));
 });
