@@ -11,13 +11,13 @@ const port = 3000;
 let base = 'main_d.css';
 let main_arr = [`<li class="out main_content">Главная страница</li>`];
 
-// Функция для чтения содержимого директории
+
 async function readContentDirectory() {
     try {
         const dirPath = path.join(__dirname, 'content');
-        await fs.access(dirPath); // Проверяем доступность директории
+        await fs.access(dirPath); 
         const files = await fs.readdir(dirPath);
-        console.log('Содержимое директории:', files); // Логируем содержимое директории
+        console.log('Содержимое директории:', files); 
         for (const elem of files) {
             const filePath = path.join(dirPath, elem);
             const stats = await fs.stat(filePath);
@@ -28,18 +28,17 @@ async function readContentDirectory() {
             const fileContent = await fs.readFile(filePath, 'utf-8');
             const $ = cheerio.load(fileContent);
             const zag = $("h1").text();
-            main_arr.push(`<li class="out">${zag}</li>`);
+            main_arr.push(`<li class="out ">${zag}</li>`);
         }
-        main_arr.push(`<li class="out relax">Релакс</li>`);
+        main_arr.push(`<li class="out relax ">Релакс</li>`);
     } catch (error) {
         console.error(`Ошибка: ${error.message}`);
     }
 }
 
-// Читаем директорию при старте сервера
 readContentDirectory();
 
-// Middleware для CORS и статических файлов
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -57,7 +56,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/css', express.static(path.join(__dirname, 'css')));
 
-// Ваши маршруты
 app.get("/", (req, res) => {
     if (req.query.menu) {
         res.json(main_arr);
@@ -79,7 +77,7 @@ app.post('/', (req, res) => {
 });
 
 const options = {
-    key: fsSync.readFileSync('server.key'), // Используем синхронный метод
+    key: fsSync.readFileSync('server.key'), 
     cert: fsSync.readFileSync('server.cert'),
 };
 

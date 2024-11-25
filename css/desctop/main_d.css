@@ -123,6 +123,10 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
     max-width: 200px;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 footer {
     display: flex;
     flex-flow: row nowrap;
