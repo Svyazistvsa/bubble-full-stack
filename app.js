@@ -28,7 +28,7 @@ async function readContentDirectory() {
             const fileContent = await fs.readFile(filePath, 'utf-8');
             const $ = cheerio.load(fileContent);
             const zag = $("h1").text();
-            main_arr.push(`<li class="out ">${zag}</li>`);
+            main_arr.push(`<li class="out">${zag}</li>`);
         }
         main_arr.push(`<li class="out relax ">Релакс</li>`);
     } catch (error) {

@@ -1,7 +1,12 @@
 "use strict"
 
+const butMenu = document.getElementById("mainMenu");
 let all = document.querySelector("#all");
-const allOut = document.querySelectorAll(".out");
+let allOut = document.querySelectorAll(".out");
+
+butMenu.addEventListener("pointerdown",(e) => {
+    allOut = document.querySelectorAll(".out");
+});
 
 allOut.forEach((item) => {
     item.addEventListener("mouseover", (e) => {
