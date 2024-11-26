@@ -1,12 +1,7 @@
 "use strict"
 
-const butMenu = document.getElementById("mainMenu");
+import { allOut } from "./main_menu";
 let all = document.querySelector("#all");
-let allOut = document.querySelectorAll(".out");
-
-butMenu.addEventListener("pointerdown",() => {
-    allOut = document.querySelectorAll(".out");
-});
 
 allOut.forEach((item) => {
     item.addEventListener("click", (e) => {

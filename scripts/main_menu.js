@@ -1,9 +1,9 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
+//document.addEventListener("DOMContentLoaded", () => {
     const butMenu = document.getElementById("mainMenu");
     const mainMenu = document.querySelector('.mainMenu');
-    let allOut = document.querySelectorAll(".out");;
+    export let allOut = document.querySelectorAll(".out");;
 
     butMenu.addEventListener("pointerdown", async (e) => {
         if(mainMenu.querySelector('li')){
@@ -37,4 +37,4 @@ document.addEventListener("DOMContentLoaded", () => {
             return []; 
         }
     }
-});
+//});
