@@ -1,9 +1,10 @@
 "use strict";
 
-//document.addEventListener("DOMContentLoaded", () => {
+    import { animation } from "./animation_interface.js";
     const butMenu = document.getElementById("mainMenu");
     const mainMenu = document.querySelector('.mainMenu');
-    export let allOut = document.querySelectorAll(".out");;
+    export let allOut = document.querySelectorAll(".out");
+    animation(allOut);
 
     butMenu.addEventListener("pointerdown", async (e) => {
         if(mainMenu.querySelector('li')){
@@ -11,7 +12,6 @@
             for(let elem of list){
                 elem.classList.toggle('hidden');
             }
-            allOut = document.querySelectorAll(".out");
             return;
         }
 
@@ -20,8 +20,8 @@
         arrMenu.forEach(element => {
             mainMenu.innerHTML += element;
         });
-
         allOut = document.querySelectorAll(".out");
+        animation(allOut);
     });
 
     async function loadMenu() {
@@ -37,4 +37,5 @@
             return []; 
         }
     }
-//});
+
+    
