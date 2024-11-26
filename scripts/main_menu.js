@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const butMenu = document.getElementById("mainMenu");
     const mainMenu = document.querySelector('.mainMenu');
+    let allOut = document.querySelectorAll(".out");;
 
     butMenu.addEventListener("pointerdown", async (e) => {
         if(mainMenu.querySelector('li')){
@@ -10,17 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
             for(let elem of list){
                 elem.classList.toggle('hidden');
             }
+            allOut = document.querySelectorAll(".out");
             return;
         }
 
         let arrMenu = await loadMenu();
         
         arrMenu.forEach(element => {
-            //const li = document.createElement('li'); 
-            //li.innerHTML = element; 
-            //mainMenu.append(li); 
             mainMenu.innerHTML += element;
         });
+
+        allOut = document.querySelectorAll(".out");
     });
 
     async function loadMenu() {
