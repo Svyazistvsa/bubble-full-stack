@@ -1,6 +1,18 @@
 "use strict";
 
-    import { animation } from "./animation_interface.js";
+let animation;
+let inv = async () => {
+    if(document.querySelector("#desctop")){
+        animation = await import ("./animation_interface.js").default;
+        alert(animation);
+    }
+
+    if(document.querySelector("#mobile")){
+        animation = await import ("./animation_interface_mobile.js").default;
+        alert(animation);
+    }
+}
+
     const butMenu = document.getElementById("mainMenu");
     const mainMenu = document.querySelector('.mainMenu');
     export let allOut = document.querySelectorAll(".out");
