@@ -2,7 +2,7 @@
 
 let all = document.querySelector("#all");
 
-export default function animation (out){
+export function animation (out){
     out.forEach((item) => {
         item.addEventListener("click", (e) => {
             e.currentTarget.classList.add("hov");

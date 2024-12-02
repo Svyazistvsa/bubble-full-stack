@@ -1,22 +1,22 @@
 "use strict";
 
-let animation;
-let inv = async () => {
-    if(document.querySelector("#desctop")){
-        animation = await import ("./animation_interface.js").default;
-        alert(animation);
-    }
+let env;
 
-    if(document.querySelector("#mobile")){
-        animation = await import ("./animation_interface_mobile.js").default;
-        alert(animation);
-    }
-}
+    document.addEventListener("DOMContentLoaded", async () => {
+        if(document.getElementById("desctop")){
+            env = await import ("./animation_interface.js");
+        }
+    
+        if(document.getElementById("mobile")){
+            env = await import ("./animation_interface_mobile.js");
+        }
+        env.animation(allOut);
+    }) 
 
     const butMenu = document.getElementById("mainMenu");
     const mainMenu = document.querySelector('.mainMenu');
     export let allOut = document.querySelectorAll(".out");
-    animation(allOut);
+    
 
     butMenu.addEventListener("pointerdown", async (e) => {
         if(mainMenu.querySelector('li')){
@@ -33,7 +33,7 @@ let inv = async () => {
             mainMenu.innerHTML += element;
         });
         allOut = document.querySelectorAll(".out");
-        animation(allOut);
+        env.animation(allOut);
     });
 
     async function loadMenu() {
