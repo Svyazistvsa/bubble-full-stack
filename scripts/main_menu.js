@@ -1,6 +1,6 @@
 "use strict";
 
-let env;
+let env, list, allOut;
 
     document.addEventListener("DOMContentLoaded", async () => {
         if(document.getElementById("desctop")){
@@ -15,12 +15,12 @@ let env;
 
     const butMenu = document.getElementById("mainMenu");
     const mainMenu = document.querySelector('.mainMenu');
-    export let allOut = document.querySelectorAll(".out");
+    allOut = document.querySelectorAll(".out");
     
 
     butMenu.addEventListener("pointerdown", async (e) => {
         if(mainMenu.querySelector('li')){
-            let list = mainMenu.querySelectorAll('li');
+            list = mainMenu.querySelectorAll('li');
             for(let elem of list){
                 elem.classList.toggle('hidden');
             }
@@ -50,4 +50,4 @@ let env;
         }
     }
 
-    
+    export {list};
