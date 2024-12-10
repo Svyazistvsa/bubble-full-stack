@@ -19,7 +19,7 @@ async function readContentDirectory() {
         const files = await fs.readdir(dirPath);
         console.log('Содержимое директории:', files); 
         for (const elem of files) {
-            const filePath = path.join(dirPath, elem);0
+            const filePath = path.join(dirPath, elem);
             const stats = await fs.stat(filePath);
             if (stats.isDirectory()) {
                 console.log(`${elem} - это директория`);
@@ -28,7 +28,7 @@ async function readContentDirectory() {
             const fileContent = await fs.readFile(filePath, 'utf-8');
             const $ = cheerio.load(fileContent);
             const zag = $("h1").text();
-            main_arr.push(`<li class="out" data-path="${filePath}">${zag}</li>`);
+            main_arr.push(`<li class="out" data-name="${elem}">${zag}</li>`);
         }
         main_arr.push(`<li class="out relax ">Релакс</li>`);
     } catch (error) {
