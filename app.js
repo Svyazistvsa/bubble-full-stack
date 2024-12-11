@@ -76,6 +76,10 @@ app.post('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'css', base));
 });
 
+app.post('/content', (req, res) =>{
+    res.sendFile(path.join(__dirname, 'content', req.body.name));
+})
+
 const options = {
     key: fsSync.readFileSync('server.key'), 
     cert: fsSync.readFileSync('server.cert'),
