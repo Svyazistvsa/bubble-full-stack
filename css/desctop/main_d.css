@@ -49,8 +49,17 @@ main {
     flex-grow: 4;
     background-color: white;
     filter: blur(3px);
-    opacity: 0.8;
+    /*opacity: 0.8;*/
+    background-color: rgba(253, 253, 253, 0.8);
     min-width: 1080px;
+}
+
+.tile {
+    margin: 2.5px 5px 5px 5px;
+    border: 1px solid red;
+    text-align: center;
+    height: 250px;
+    min-width: 90%;
 }
 
 header {

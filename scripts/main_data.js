@@ -29,7 +29,7 @@ nav.addEventListener("pointerdown", async (e) => {
             let content = await response.json(); 
             alert(content);
             main.innerHTML = content[0];
-            main. 
+            
         } else {
             console.log("Error download");
             return []; 

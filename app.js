@@ -30,7 +30,7 @@ async function readContentDirectory() {
             const img = $("img.main").attr("src");
             main_arr.push(`<li class="out" data-name="${elem}">${zag}</li>`);
             main_cont.push([
-                `<li class="out" data-name="${elem}">${zag}</li>`,
+                `<div class="tile" data-name="${elem}">${zag}</div>`,
                 `<img src="${path.join(__dirname,img)}" alt="${zag}>`
             ]);
         }
