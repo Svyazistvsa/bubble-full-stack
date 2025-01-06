@@ -30,10 +30,9 @@ async function readContentDirectory() {
             const img = $("img.main").attr("src");
             console.log(path.join(__dirname,img));
             main_arr.push(`<li class="out" data-name="${elem}">${zag}</li>`);
-            main_cont.push([
-                `<div class="tile" data-name="${elem}" style="background:url('${img}')">${zag}</div>`,
-                //`<img src="${path.join(__dirname,img)}" alt="${zag}>`
-            ]);
+            main_cont.push(
+                `<div class="tile" data-name="${elem}" style="background: url('${img}') center center no-repeat black; background-size: cover;">${zag}</div>`
+            );
         }
         main_arr.push(`<li class="out relax ">Релакс</li>`);
     } catch (error) {

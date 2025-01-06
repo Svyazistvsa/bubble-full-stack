@@ -47,6 +47,15 @@ main {
     min-height: 500px;
 }
 
+.tile {
+    margin: 2.5px 5px 5px 5px;
+    border: 1px solid red;
+    text-align: center;
+    height: 150px;
+    min-width: 90%;
+    
+}
+
 header {
     display:flex;
     justify-content: space-between;
