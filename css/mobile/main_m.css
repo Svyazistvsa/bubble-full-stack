@@ -40,9 +40,8 @@ nav, aside {
 
 main {
     
-    background-color: white;
-    filter: blur(3px);
-    opacity: 0.8;
+    backdrop-filter: blur(3px);
+    background-color: rgba(253, 253, 253, 0.8);
     min-width: 100%;
     min-height: 500px;
 }
@@ -102,14 +101,13 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
 }
 
 #subMenu {
-    /*position: relative;*/
     height: 50px;
     width: 50px;
 }
 
 #mainMenu {
     position: relative;
-    top: 16px;
+    /*top: 16px;*/
     height: 50px;
     width: 50px;
 }
@@ -123,10 +121,15 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
     box-sizing: unset;
     display: inline-block;
     vertical-align: middle;
-  }
+}
+
+  .mainMenu{
+    position: absolute;
+    top:80px;
+    z-index: 100;
+}
 
 .mainMenu > li {    
-    display:none;
     list-style-type: none;
     min-width: 100px;
     max-width: 200px;
