@@ -28,10 +28,11 @@ async function readContentDirectory() {
             const $ = cheerio.load(fileContent);
             const zag = $("h1").text();
             const img = $("img.main").attr("src");
+            console.log(path.join(__dirname,img));
             main_arr.push(`<li class="out" data-name="${elem}">${zag}</li>`);
             main_cont.push([
-                `<div class="tile" data-name="${elem}">${zag}</div>`,
-                `<img src="${path.join(__dirname,img)}" alt="${zag}>`
+                `<div class="tile" data-name="${elem}" style="background:url('${img}')">${zag}</div>`,
+                //`<img src="${path.join(__dirname,img)}" alt="${zag}>`
             ]);
         }
         main_arr.push(`<li class="out relax ">Релакс</li>`);

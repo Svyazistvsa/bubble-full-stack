@@ -26,8 +26,7 @@ nav.addEventListener("pointerdown", async (e) => {
             headers: { "Content-Type": "application/json" },
         });
         if (response.ok) {
-            let content = await response.json(); 
-            alert(content);
+            let content = await response.json();
             main.innerHTML = content[0];
             
         } else {
