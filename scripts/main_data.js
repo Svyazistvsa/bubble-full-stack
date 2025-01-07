@@ -1,6 +1,7 @@
 "use strict"
 
-let main = document.getElementsByTagName("main")[0];
+let main = document.getElementsByTagName("main")[0],
+    subMenu = document.querySelector("#subMenu");
 
 document.addEventListener("pointerdown", async (e) => {   
     if(e.target.hasAttribute("data-name")){
@@ -13,7 +14,8 @@ document.addEventListener("pointerdown", async (e) => {
 
         if (response.ok) {
             const newDocument = await response.text();
-            main.innerHTML = newDocument;            
+            main.innerHTML = newDocument;
+            if(subMenu.classList.contains("hidden")) subMenu.classList.remove("hidden");
         } else {
             console.error('Ошибка при отправке запроса:', response.status);
         }
@@ -31,7 +33,7 @@ let res = async () =>{
     if (response.ok) {
         let content = await response.json();
         main.innerHTML = content[0];
-        document.querySelector("#subMenu").classList.add("hidden");
+        subMenu.classList.add("hidden");
     } else {
         console.log("Error download");
         return []; 
