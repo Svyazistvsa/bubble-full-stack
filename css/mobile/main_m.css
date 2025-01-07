@@ -107,7 +107,6 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
 
 #mainMenu {
     position: relative;
-    /*top: 16px;*/
     height: 50px;
     width: 50px;
 }
@@ -123,9 +122,10 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
     vertical-align: middle;
 }
 
-  .mainMenu{
+.mainMenu{
     position: absolute;
-    top:80px;
+    top: 80px;
+    left: -38px; 
     z-index: 100;
 }
 
@@ -133,6 +133,7 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
     list-style-type: none;
     min-width: 100px;
     max-width: 200px;
+    margin-top: 2px;
 }
 
 .hidden {
