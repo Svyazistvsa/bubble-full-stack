@@ -50,6 +50,55 @@ main {
     margin: 2.5px 5px 5px 5px;
     border: 1px solid red;
     text-align: center;
+    height: 250px;
+    min-width: 90%;
+    
+}
+
+main > p, main > h1, main > h3, main > h4 {
+    margin: 50px 30px;    
+}
+
+main > h1, main > h3, main > h4 {
+    text-align: center;
+}
+
+main > p {
+    font-size: 15pt;
+}
+
+main > h3 {
+    font-size: 17pt;
+}
+
+main > h4 {
+    font-size: 16pt;
+}
+
+.main, .example {
+    border: 3px solid rgb(72, 71, 71);
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(43, 42, 42);
+    margin: 5px auto;
+}
+
+.main {
+    display: block;
+    width: 90%;
+    max-width: 500px;
+    
+}
+
+.example {
+    display: block;
+    width: 350px;
+    
+}
+
+.tile {
+    margin: 2.5px 5px 5px 5px;
+    border: 1px solid red;
+    text-align: center;
     height: 150px;
     min-width: 90%;
     
