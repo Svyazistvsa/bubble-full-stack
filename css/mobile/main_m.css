@@ -122,7 +122,7 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
     vertical-align: middle;
 }
 
-.mainMenu{
+.mainMenu {
     position: absolute;
     top: 80px;
     left: -38px; 

@@ -1,9 +1,8 @@
 "use strict"
 
-let nav = document.querySelector("nav"),
-    main = document.getElementsByTagName("main")[0];
+let main = document.getElementsByTagName("main")[0];
 
-nav.addEventListener("pointerdown", async (e) => {
+document.addEventListener("pointerdown", async (e) => {
     if(e.target.hasAttribute("data-name")){
         let name = e.target.dataset.name;
         let response = await fetch("https://localhost:3000/content", {
@@ -14,8 +13,7 @@ nav.addEventListener("pointerdown", async (e) => {
 
         if (response.ok) {
             const newDocument = await response.text();
-            main.innerHTML = newDocument;
-            
+            main.innerHTML = newDocument;            
         } else {
             console.error('Ошибка при отправке запроса:', response.status);
         }

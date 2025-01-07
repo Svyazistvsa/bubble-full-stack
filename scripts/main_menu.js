@@ -25,7 +25,7 @@ let env, list, allOut;
                 elem.classList.toggle('hidden');
             }
             return;
-        }
+        } 
 
         let arrMenu = await loadMenu();
         
