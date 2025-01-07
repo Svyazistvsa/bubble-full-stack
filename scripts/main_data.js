@@ -19,17 +19,23 @@ document.addEventListener("pointerdown", async (e) => {
         }
     }
     if(e.target.classList.contains("main_content")){
-        let response = await fetch("https://localhost:3000?main=main", {
-            method: 'GET',
-            headers: { "Content-Type": "application/json" },
-        });
-        if (response.ok) {
-            let content = await response.json();
-            main.innerHTML = content[0];
-            
-        } else {
-            console.log("Error download");
-            return []; 
-        }        
+        res();
     }
 })
+
+let res = async () =>{
+    let response = await fetch("https://localhost:3000?main=main", {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" },
+    });
+    if (response.ok) {
+        let content = await response.json();
+        main.innerHTML = content[0];
+        document.querySelector("#subMenu").classList.add("hidden");
+    } else {
+        console.log("Error download");
+        return []; 
+    }        
+}
+
+export {res};

@@ -23,23 +23,9 @@
                 </ul>
             </nav>
             <main>
-                <script>
-                    const main = document.querySelector("main");
-                    let res = async () =>{
-                        let response = await fetch("https://localhost:3000?main=main", {
-                            method: 'GET',
-                            headers: { "Content-Type": "application/json" },
-                        });
-                        if (response.ok) {
-                            let content = await response.json();
-                            main.innerHTML = content[0];
-                            
-                        } else {
-                            console.log("Error download");
-                            return []; 
-                        }        
-                    }
-                    res();
+                <script type="module">
+                   import {res} from "../../scripts/main_data.js"
+                   res();
                 </script>
             </main>
             <aside>
