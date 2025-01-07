@@ -4,7 +4,7 @@ let all = document.querySelector("#all");
 
 export function animation (out){
     out.forEach((item) => {
-        item.addEventListener("click", (e) => {
+        item.addEventListener("pointerdown", (e) => {
             e.currentTarget.classList.add("hov");
         })
     })

@@ -18,13 +18,30 @@
                 <ul class="mainMenu">
                 </ul>
             </nav>
-            <div class="logo out"><h1>Bubble</h1></div>
+            <div class="logo out main_content"><h1 class="main_content">Bubble</h1></div>
             <aside>
                 <button id="subMenu" class="out">Сод.</button>
             </aside>  
         </header>                
             <main>
-    
+                <script>
+                    const main = document.querySelector("main");
+                    let res = async () =>{
+                        let response = await fetch("https://localhost:3000?main=main", {
+                            method: 'GET',
+                            headers: { "Content-Type": "application/json" },
+                        });
+                        if (response.ok) {
+                            let content = await response.json();
+                            main.innerHTML = content[0];
+                            
+                        } else {
+                            console.log("Error download");
+                            return []; 
+                        }        
+                    }
+                    res();
+                </script>
             </main>                      
         <footer>
             <div class="myGit">

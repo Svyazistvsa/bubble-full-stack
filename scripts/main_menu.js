@@ -17,16 +17,20 @@ let env, list, allOut;
     const mainMenu = document.querySelector('.mainMenu');
     allOut = document.querySelectorAll(".out");
     
+    document.addEventListener("pointerdown", (e) =>{
+        if(e.target !== butMenu && mainMenu.querySelector('li') && !mainMenu.querySelector('li').classList.contains('hidden')){
+            if(e.target === document.querySelector(".lines")) return ;
+            mainMenu.classList.add('hidden');
+            return;                        
+        }
+    })
 
     butMenu.addEventListener("pointerdown", async (e) => {
         if(mainMenu.querySelector('li')){
-            list = mainMenu.querySelectorAll('li');
-            for(let elem of list){
-                elem.classList.toggle('hidden');
-            }
+            mainMenu.classList.toggle('hidden');
             return;
-        } 
-
+        }
+       
         let arrMenu = await loadMenu();
         
         arrMenu.forEach(element => {
@@ -50,4 +54,4 @@ let env, list, allOut;
         }
     }
 
-    export {list};
+    export {list, butMenu};
