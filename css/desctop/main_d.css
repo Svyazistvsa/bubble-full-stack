@@ -51,6 +51,7 @@ main {
     backdrop-filter: blur(3px);
     background-color: rgba(253, 253, 253, 0.8);
     min-width: 1080px;
+    max-width: 1320px;
 }
 
 .tile {
@@ -60,6 +61,44 @@ main {
     height: 250px;
     min-width: 90%;
     
+}
+
+main > p, main > h1, main > h3, main > h4 {
+    margin: 50px 30px;    
+}
+
+main > h1, main > h3, main > h4 {
+    text-align: center;
+}
+
+main > p {
+    font-size: 15pt;
+}
+
+main > h3 {
+    font-size: 17pt;
+}
+
+main > h4 {
+    font-size: 16pt;
+}
+
+.main, .example {
+    border: 3px solid rgb(72, 71, 71);
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(43, 42, 42);
+}
+
+.main {
+    display: block;
+    width: 1000px;
+    margin: 5px auto 5px;
+    
+}
+
+.example {
+    width: 450px;
+    margin: 5px 10px;
 }
 
 header {
@@ -130,6 +169,7 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
     list-style-type: none;
     min-width: 100px;
     max-width: 200px;
+    margin-top: 4px;
 }
 
 .hidden {
