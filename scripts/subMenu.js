@@ -5,10 +5,10 @@ const aside = document.getElementsByTagName("aside")[0];
 let ul = document.createElement("ul");
 
 document.addEventListener("newContent", () => {
-    let heads = content.querySelectorAll("H1");
+    let heads = content.querySelectorAll("h1");
     heads.forEach((item, index, array) => {
         let li = document.createElement("li");
-        li.textContent = item.text;
+        li.innerHTML = item.innerHTML;
         ul.append(li);
         aside.append(ul);
     })
