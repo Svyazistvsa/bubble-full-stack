@@ -1,13 +1,12 @@
 "use strict"
 
-import {butMenu,an_in} from './main_menu.js';
-
-
 const content = document.getElementsByTagName("main")[0];
 const aside = document.getElementsByTagName("aside")[0];
 const subMenu = document.querySelector("#subMenu");
 let ul = document.createElement("ul"),
     heads, env, allOut;
+
+ul.classList.add("subUl");
 
     document.addEventListener("DOMContentLoaded", async () => {
         
@@ -31,8 +30,7 @@ document.addEventListener("newContent", () => {
         li.classList.add("subPoint");
         li.classList.add("out");
         ul.append(li);
-    })
-    
+    })    
 })
 
 subMenu.addEventListener("pointerdown",async (e) => {

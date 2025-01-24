@@ -1,7 +1,7 @@
 "use strict"
 
 let main = document.getElementsByTagName("main")[0],
-    subMenu = document.querySelector("#subMenu");
+    subMenu = document.querySelector("#subMenu");    
 
 document.addEventListener("pointerdown", async (e) => {   
     if(e.target.hasAttribute("data-name")){
@@ -35,6 +35,7 @@ let res = async () =>{
         let content = await response.json();
         main.innerHTML = content[0];
         subMenu.classList.add("hidden");
+        if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
     } else {
         console.log("Error download");
         return []; 
