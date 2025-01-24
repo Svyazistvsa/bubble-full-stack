@@ -54,4 +54,4 @@ let env, list, allOut;
         }
     }
 
-    export {list, butMenu};
+    export {list, butMenu, allOut, env};
