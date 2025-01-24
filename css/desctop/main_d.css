@@ -150,7 +150,7 @@ header > h3 {
     text-shadow: var(--darkOrange) 1px 0px, var(--darkOrange) 0px 1px, var(--darkOrange) 0px -1px, var(--darkOrange) -1px 0px;
 }
 
-header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
+header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a,.subPoint {
     background-color: var(--yellow);
     border: 1px solid var(--darkOrange);
     border-radius: 15px;
@@ -162,12 +162,16 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
     left: 40px;
 }
 
+.subPoint {
+
+}
+
 #mainMenu {
     position: relative;
     left: 40px;
 }
 
-.mainMenu > li {    
+.mainMenu > li, .subPoint {    
     list-style-type: none;
     min-width: 100px;
     max-width: 200px;
