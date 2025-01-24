@@ -1,8 +1,8 @@
 "use strict";
 
 let env, list, allOut;
-
-    document.addEventListener("DOMContentLoaded", async () => {
+async function an_in() {
+        
         if(document.getElementById("desctop")){
             env = await import ("./animation_interface.js");
         }
@@ -10,12 +10,15 @@ let env, list, allOut;
         if(document.getElementById("mobile")){
             env = await import ("./animation_interface_mobile.js");
         }
-        env.animation(allOut);
-    }) 
+        allOut = document.querySelectorAll(".out");
+        env.animation(allOut);        
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {an_in()}); 
 
     const butMenu = document.getElementById("mainMenu");
     const mainMenu = document.querySelector('.mainMenu');
-    allOut = document.querySelectorAll(".out");
+    
     
     document.addEventListener("pointerdown", (e) =>{
         if(e.target !== butMenu && mainMenu.querySelector('li') && !mainMenu.querySelector('li').classList.contains('hidden')){
@@ -54,4 +57,4 @@ let env, list, allOut;
         }
     }
 
-    export {list, butMenu, allOut, env};
+    export {list, butMenu, an_in};
