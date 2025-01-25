@@ -157,9 +157,13 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a,.sub
     padding: 10px;
 }
 
-#subMenu {
-    position: relative;
-    left: 40px;
+aside, nav {
+    padding-left: 40px;
+}
+
+#subMenu, #mainMenu{
+    position:sticky;
+    top:10px;
 }
 
 .subPoint > a {
@@ -167,9 +171,9 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a,.sub
     all: unset;
 }
 
-#mainMenu {
-    position: relative;
-    left: 40px;
+#subMenu ~ ul, .mainMenu {
+    position: sticky;
+    top:60px;
 }
 
 .mainMenu > li, .subPoint {    
