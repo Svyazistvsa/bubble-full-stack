@@ -8,7 +8,7 @@ let ul = document.createElement("ul"),
 
 ul.classList.add("subUl");
 
-    document.addEventListener("DOMContentLoaded", async () => {
+    aside.addEventListener("pointerdown", async () => {
         
         if(document.getElementById("desctop")){
             env = await import ("./animation_interface.js");
@@ -39,8 +39,6 @@ subMenu.addEventListener("pointerdown",async (e) => {
         return;
     }
     aside.append(ul);
-    allOut = document.querySelectorAll(".out");
-    env.animation(allOut);
 })
 
 
