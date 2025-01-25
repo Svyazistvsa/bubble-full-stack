@@ -51,12 +51,13 @@ main {
     backdrop-filter: blur(3px);
     background-color: rgba(253, 253, 253, 0.8);
     min-width: 1080px;
-    max-width: 1320px;
+    max-width: 1220px;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .tile {
-    margin: 2.5px 5px 5px 5px;
+    margin: 2.5px 0 5px 0;
     border: 1px solid red;
     text-align: center;
     height: 250px;
@@ -65,7 +66,7 @@ main {
 }
 
 main > p, main > h1, main > h3, main > h4 {
-    margin: 50px 30px;    
+    margin: 50px 0;    
 }
 
 main > h1, main > h3, main > h4 {
@@ -92,8 +93,8 @@ main > h4 {
 
 .main {
     display: block;
-    width: 1000px;
-    margin: 5px auto 5px;
+    max-width: 1000px;
+    margin: 5px auto 5px;*/
     
 }
 
@@ -179,7 +180,7 @@ aside, nav {
 .mainMenu > li, .subPoint {    
     list-style-type: none;
     min-width: 100px;
-    max-width: 200px;
+    max-width: 150px;
     margin-top: 4px;
 }
 
