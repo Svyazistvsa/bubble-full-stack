@@ -48,11 +48,9 @@ main {
 
 .tile {
     margin: 2.5px 5px 5px 5px;
-    border: 1px solid red;
     text-align: center;
-    height: 250px;
-    min-width: 90%;
-    
+    height: 350px;
+    max-width: 90%;    
 }
 
 main > p, main > h1, main > h3, main > h4 {
@@ -75,7 +73,7 @@ main > h4 {
     font-size: 16pt;
 }
 
-.main, .example {
+.main, .example, .tile {
     border: 3px solid rgb(72, 71, 71);
     border-radius: 10px;
     box-shadow: 5px 5px 10px rgb(43, 42, 42);
@@ -95,14 +93,7 @@ main > h4 {
     
 }
 
-.tile {
-    margin: 2.5px 5px 5px 5px;
-    border: 1px solid red;
-    text-align: center;
-    height: 150px;
-    min-width: 90%;
-    
-}
+
 
 header {
     display:flex;
@@ -146,16 +137,38 @@ header:hover {
     text-shadow: var(--darkOrange) 1px 0px, var(--darkOrange) 0px 1px, var(--darkOrange) 0px -1px, var(--darkOrange) -1px 0px;
 }
 
-header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
+header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a, .subPoint {
     background-color: var(--yellow);
     border: 1px solid var(--darkOrange);
     border-radius: 15px;
-    padding: 10px;
+    padding: 5px;
 }
 
 #subMenu {
     height: 50px;
     width: 50px;
+}
+
+#subMenu ~ ul {
+    position: absolute;
+    top: 60px;
+    right: 25px;
+    font-size: 10pt;
+}
+
+.mainMenu > li, .subPoint {    
+    list-style-type: none;
+    min-width: 100px;
+    max-width: 200px;
+    margin-top: 10px;
+}
+
+.subPoint > a {
+    all: unset;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    
 }
 
 #mainMenu {
@@ -185,7 +198,7 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a {
 .mainMenu > li {    
     list-style-type: none;
     min-width: 100px;
-    max-width: 200px;
+    max-width: 150px;
     margin-top: 2px;
 }
 

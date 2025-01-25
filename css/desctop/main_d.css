@@ -58,7 +58,7 @@ main {
 
 .tile {
     margin: 2.5px 0 5px 0;
-    border: 1px solid red;
+    
     text-align: center;
     height: 250px;
     min-width: 90%;
@@ -85,7 +85,7 @@ main > h4 {
     font-size: 16pt;
 }
 
-.main, .example {
+.main, .example, .tile {
     border: 3px solid rgb(72, 71, 71);
     border-radius: 10px;
     box-shadow: 5px 5px 10px rgb(43, 42, 42);
@@ -168,8 +168,10 @@ aside, nav {
 }
 
 .subPoint > a {
-    display: block;
     all: unset;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 #subMenu ~ ul, .mainMenu {
