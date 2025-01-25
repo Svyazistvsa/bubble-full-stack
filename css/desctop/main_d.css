@@ -162,8 +162,9 @@ header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a,.sub
     left: 40px;
 }
 
-.subPoint {
-
+.subPoint > a {
+    display: block;
+    all: unset;
 }
 
 #mainMenu {

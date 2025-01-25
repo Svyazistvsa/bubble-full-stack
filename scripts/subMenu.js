@@ -22,11 +22,18 @@ ul.classList.add("subUl");
     }) 
 
 document.addEventListener("newContent", () => {
+    let count = 0;
     ul.innerHTML = "";
     heads = content.querySelectorAll("h1,h3,h4");
     heads.forEach((item) => {
-        let li = document.createElement("li");
-        li.innerHTML = item.innerHTML;
+        count += 1;
+        let li = document.createElement("li"),
+            ancor = document.createElement("a");
+            ancor.setAttribute("href", `#${count}`);
+        ancor.innerHTML = item.innerHTML;        
+        item.setAttribute("id", count);
+        //li.innerHTML = item.innerHTML;
+        li.append(ancor);
         li.classList.add("subPoint");
         li.classList.add("out");
         ul.append(li);
