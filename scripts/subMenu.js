@@ -32,7 +32,6 @@ document.addEventListener("newContent", () => {
             ancor.setAttribute("href", `#${count}`);
         ancor.innerHTML = item.innerHTML;        
         item.setAttribute("id", count);
-        //li.innerHTML = item.innerHTML;
         li.append(ancor);
         li.classList.add("subPoint");
         li.classList.add("out");

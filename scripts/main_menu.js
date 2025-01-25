@@ -57,4 +57,4 @@ async function an_in() {
         }
     }
 
-    export {list, butMenu, an_in};
+    export {list, butMenu};

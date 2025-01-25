@@ -57,19 +57,16 @@ main {
 }
 
 .tile {
-    margin: 2.5px 0 5px 0;
-    
-    text-align: center;
+    margin: 2.5px 0 5px 0;    
     height: 250px;
-    min-width: 90%;
-    
+    min-width: 90%;    
 }
 
 main > p, main > h1, main > h3, main > h4 {
     margin: 50px 0;    
 }
 
-main > h1, main > h3, main > h4 {
+main > h1, main > h3, main > h4, .tile {
     text-align: center;
 }
 
@@ -130,7 +127,7 @@ header:hover {
     border-radius: 130px;
 }
 
-.logo > h1 {
+.logo > h1, .zag {
     position: relative;
     left: -30px;
     top: 30px;
@@ -138,6 +135,15 @@ header:hover {
     font-size: 35pt;
     color: var(--darkGreen);
     text-shadow: var(--darkOrange) 1px 0px, var(--darkOrange) 0px 1px, var(--darkOrange) 0px -1px, var(--darkOrange) -1px 0px;
+}
+
+.zag {
+    color: var(--yellow);
+    text-shadow: var(--darkGreen) 2px 0px, var(--darkGreen) 0px 2px;
+    position: relative;
+    top: 50%;
+    margin: auto;
+    font-size: 40pt;
 }
 
 header > h3 {

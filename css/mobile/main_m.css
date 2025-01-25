@@ -48,16 +48,17 @@ main {
 
 .tile {
     margin: 2.5px 5px 5px 5px;
-    text-align: center;
     height: 350px;
-    max-width: 90%;    
+    max-width: 90%;
+    color: var(--darkGreen);
+    text-shadow: var(--darkOrange) 1px 0px, var(--darkOrange) 0px 1px, var(--darkOrange) 0px -1px, var(--darkOrange) -1px 0px; 
 }
 
 main > p, main > h1, main > h3, main > h4 {
     margin: 50px 30px;    
 }
 
-main > h1, main > h3, main > h4 {
+main > h1, main > h3, main > h4, .tile {
     text-align: center;
 }
 
@@ -83,17 +84,13 @@ main > h4 {
 .main {
     display: block;
     width: 90%;
-    max-width: 500px;
-    
+    max-width: 500px;    
 }
 
 .example {
     display: block;
-    width: 350px;
-    
+    width: 350px;    
 }
-
-
 
 header {
     display:flex;
@@ -127,7 +124,7 @@ header:hover {
     border-radius: 130px;
 }
 
-.logo > h1 {
+.logo > h1,.zag {
     position: relative;
     left: -20px;
     top: 20px;
@@ -135,6 +132,15 @@ header:hover {
     font-size: 20pt;
     color: var(--darkGreen);
     text-shadow: var(--darkOrange) 1px 0px, var(--darkOrange) 0px 1px, var(--darkOrange) 0px -1px, var(--darkOrange) -1px 0px;
+}
+
+.zag {
+    color: var(--yellow);
+    text-shadow: var(--darkGreen) 2px 0px, var(--darkGreen) 0px 2px;
+    position: relative;
+    top: 50%;
+    margin: auto;
+    font-size: 40pt;
 }
 
 header > h3, #subMenu, .mainMenu > li, #mainMenu, .myGit > a, .footLogo > a, .subPoint {

@@ -31,7 +31,7 @@ async function readContentDirectory() {
             console.log(path.join(__dirname,img));
             main_arr.push(`<li class="out" data-name="${elem}">${zag}</li>`);
             main_cont.push(
-                `<div class="tile" data-name="${elem}" style="background: url('${img}') center center no-repeat black; background-size: cover;">${zag}</div>`
+                `<div class="tile" data-name="${elem}" style="background: url('${img}') center center no-repeat black; background-size: cover;"><span class="zag">${zag}</span></div>`
             );
         }
         main_arr.push(`<li class="out relax ">Релакс</li>`);
