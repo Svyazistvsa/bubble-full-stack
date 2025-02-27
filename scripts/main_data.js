@@ -33,7 +33,11 @@ let res = async () =>{
     });
     if (response.ok) {
         let content = await response.json();
-        main.innerHTML = content[0];
+        main.innerHTML = "";
+        content.forEach((item) => {
+            main.innerHTML +=item;
+        })
+
         subMenu.classList.add("hidden");
         if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
     } else {
