@@ -97,6 +97,7 @@ main > h4 {
 
 .example {
     width: 450px;
+    height: 350px;
     margin: 5px 10px;
     float: right;
 }
