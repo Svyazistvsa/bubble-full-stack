@@ -139,6 +139,7 @@ header:hover {
     text-shadow: var(--darkGreen) 2px 0px, var(--darkGreen) 0px 2px;
     position: relative;
     top: 50%;
+    left: 0px;
     margin: auto;
     font-size: 40pt;
 }
