@@ -63,10 +63,12 @@ main {
 }
 
 .fullImg > img {
-    display: block;
-    max-height: 80%;
-    max-width: 90%;
-    margin: auto auto auto auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    max-height: 90%;
 }
 
 main > p, main > h1, main > h3, main > h4 {
