@@ -1,7 +1,7 @@
 "use strict"
 
 let main = document.querySelector("main"),
-        allScreen = document.querySelector("#all");
+        allScreen = document.querySelector("body");
 
 document.addEventListener("newContent", () => {    
     main.removeEventListener("pointerdown", full);
@@ -16,7 +16,7 @@ let full = (e) =>{
         
         imgScreen.classList.add("fullImg");
         imgScreen.append(clone);
-        allScreen.append(imgScreen);
+        allScreen.prepend(imgScreen);
         for(let i of clone.classList){
             clone.classList.remove(i);
         }
