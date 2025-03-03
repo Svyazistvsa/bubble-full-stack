@@ -17,6 +17,7 @@ document.addEventListener("pointerdown", async (e) => {
             main.innerHTML = newDocument;
             if(subMenu.classList.contains("hidden")) subMenu.classList.remove("hidden");
             document.dispatchEvent(new CustomEvent("newContent", {bubbles:true}));
+            history.pushState({name : name, path:"https://localhost:3000/content"}, "", "https://localhost:3000/content");
         } else {
             console.error('Ошибка при отправке запроса:', response.status);
         }
