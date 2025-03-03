@@ -27,7 +27,7 @@ document.addEventListener("pointerdown", (e) => {
     }
 })
 
-async function contentF(name){
+let contentF = async (name) => {
     let response = await fetch("https://localhost:3000/content", {
         method: 'POST',
         headers: {"Content-Type": "application/json"},

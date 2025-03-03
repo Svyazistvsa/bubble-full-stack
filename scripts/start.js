@@ -34,6 +34,7 @@ async function getOS() {
                     document.open();
                     document.write(newDocument);
                     document.close();
+                    history.replaceState({name: "main", path:"https://localhost:3000"},"", "https://localhost:3000");
                 } else {
                     console.error('Ошибка при отправке запроса:', response.status);
                 }
