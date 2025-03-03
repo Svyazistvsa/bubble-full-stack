@@ -18,10 +18,12 @@ window.addEventListener("popstate", (e) => {
 document.addEventListener("pointerdown", (e) => {   
     if(e.target.hasAttribute("data-name")){
         let name = e.target.dataset.name;
-        contentF(name);        
+        contentF(name);
+        history.pushState({name: name, path:"https://localhost:3000/content/"+name+"/" }, "", "https://localhost:3000/content/"+name+"/");       
     }
     if(e.target.classList.contains("main_content")){
         res();
+        history.pushState({name: "main", path:"https://localhost:3000"},"", "https://localhost:3000");
     }
 })
 
@@ -36,8 +38,7 @@ async function contentF(name){
         const newDocument = await response.text();
         main.innerHTML = newDocument;
         if(subMenu.classList.contains("hidden")) subMenu.classList.remove("hidden");
-        document.dispatchEvent(new CustomEvent("newContent", {bubbles:true}));
-        history.pushState({name: name, path:"https://localhost:3000/content/"+name+"/" }, "", "https://localhost:3000/content/"+name+"/");
+        document.dispatchEvent(new CustomEvent("newContent", {bubbles:true}));        
     } else {
         console.error('Ошибка при отправке запроса:', response.status);
     }
@@ -54,8 +55,6 @@ let res = async () =>{
         content.forEach((item) => {
             main.innerHTML +=item;
         })
-        history.pushState({name: "main", path:"https://localhost:3000"},"", "https://localhost:3000")
-
         subMenu.classList.add("hidden");
         if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
     } else {
