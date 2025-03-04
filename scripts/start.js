@@ -39,5 +39,5 @@ async function getOS() {
                     console.error('Ошибка при отправке запроса:', response.status);
                 }
         }
-
+alert("start is here")
         window.onload = getOS;
