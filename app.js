@@ -70,6 +70,19 @@ app.get("/", (req, res) => {
     }
 });
 
+app.get("/content/:filename", (req,res) => {
+    const filename = req.params.filename;
+    const filePath = path.join(__dirname,"content", filename);
+    fs.access(filePath)
+        .then(() => {
+            res.sendFile(filePath);
+        })
+        .catch(err => {
+            console.error(`Ошибка доступа к файлу: ${err.message}`);
+            res.status(404).send("Файл не найден");
+        })
+});
+
 app.post('/', (req, res) => {
     switch (req.body.os) {
         case "pc":
