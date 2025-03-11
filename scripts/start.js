@@ -21,23 +21,24 @@ async function getOS() {
             }
 
             
-                let response = await fetch("https://localhost:3000", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ os: os }), 
-                });  
-             
+            
+            let response = await fetch("https://localhost:3000", {
+                method: 'POST',
+                headers: {                  
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ os: os }), 
+            });  
                 if (response.ok) {
-                    const newDocument = await response.text();
-                    document.open();
-                    document.write(newDocument);
-                    document.close();
-                    history.replaceState({name: "main", path:"https://localhost:3000"},"", "https://localhost:3000");
-                } else {
-                    console.error('Ошибка при отправке запроса:', response.status);
-                }
+                const newDocument = await response.text();
+                document.open();
+                document.write(newDocument);
+                document.close();
+                //history.replaceState({name: "main", path:"https://localhost:3000"},"", "https://localhost:3000");
+            } else {
+                console.error('Ошибка при отправке запроса:', response.status);
+            }
+
         }
 //alert("start is here")
         window.onload = getOS;

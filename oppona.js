@@ -1,4 +1,3 @@
-
 const https = require('https');
 const express = require('express');
 const path = require('path');
@@ -62,8 +61,6 @@ app.use('/scripts', express.static(path.join(__dirname, 'scripts'), {
     setHeaders: (res, path) => {
         if (path.endsWith('.js')) {
             res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
-            res.setHeader('X-Content-Type-Options', 'nosniff');
-            res.setHeader('Cache-Control', 'public, max-age=31536000');
         }
     }
 }));
