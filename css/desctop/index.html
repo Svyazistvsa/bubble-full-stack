@@ -27,15 +27,15 @@
                 <script type="module">
                    import {res, contentF} from "../../scripts/main_data.js"
                    
-                   let loc = window.location.pathname;
+                   let loc = window.location.pathname,
+                       main = document.getElementsByTagName("main")[0];
 
                    switch(loc){
                     case "/": 
                         res();
                         break;
                     default: 
-                    let filename = loc.substring(loc.lastIndexOf('/') + 1);
-                    alert(filename);
+                    let filename = loc.slice(9, -1);
                     contentF(filename);
                    }
                 </script>
