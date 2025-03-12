@@ -66,7 +66,9 @@ app.use(express.json());
 app.use('/css', express.static(path.join(__dirname, 'css')));
 
 app.get("/content/:filename", (req, res) => {
-    if(req.params.content){
+    
+    if(req.params.filename){
+        console.log(__dirname);
         res.setHeader('Content-Type', 'text/html');
         res.sendFile(path.join(__dirname, 'scout.html'));
     }
@@ -81,7 +83,7 @@ app.get("/", (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.json(main_cont);
     } else {
-        console.log(__dirname);
+        console.log("/");
         res.setHeader('Content-Type', 'text/html');
         res.sendFile(path.join(__dirname, 'scout.html'));
     }

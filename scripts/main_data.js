@@ -63,4 +63,4 @@ let res = async () =>{
     }        
 }
 
-export {res};
+export {res, contentF};
