@@ -1,12 +1,15 @@
 "use strict"
 
 async function getOS() {
-            var userAgent = window.navigator.userAgent,
+
+            let loc = window.location.pathname,
+                userAgent = window.navigator.userAgent,
                 platform = window.navigator.platform,
                 macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
                 windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
                 iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-                os = null;
+                os = null,
+                location;
 
             if (macosPlatforms.indexOf(platform) !== -1) {
                 os = 'pc';
@@ -20,9 +23,15 @@ async function getOS() {
                 os = 'pc';
             }
 
+            switch(loc){
+                case "/":
+                    location = '';
+                    break;
+                default:
+                    location = loc;    
+            }
             
-            
-            let response = await fetch("https://localhost:3000", {
+            let response = await fetch("https://localhost:3000"+loc, {
                 method: 'POST',
                 headers: {                  
                     'Content-Type': 'application/json'
@@ -30,15 +39,15 @@ async function getOS() {
                 body: JSON.stringify({ os: os }), 
             });  
                 if (response.ok) {
+                    
                 const newDocument = await response.text();
                 document.open();
                 document.write(newDocument);
                 document.close();
-                //history.replaceState({name: "main", path:"https://localhost:3000"},"", "https://localhost:3000");
+                history.replaceState({name: "main", path:"https://localhost:3000"+loc},"", "https://localhost:3000"+loc);
             } else {
                 console.error('Ошибка при отправке запроса:', response.status);
             }
 
         }
-//alert("start is here")
         window.onload = getOS;

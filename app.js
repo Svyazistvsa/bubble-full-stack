@@ -1,29 +1,29 @@
-
 const https = require('https');
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs').promises;
 const fsSync = require('fs');
 const cheerio = require('cheerio');
-const Emitter = require('events');
 const app = express();
 const port = 3000;
-class MyEmitter extends Emitter {}
-const myEmitter = new MyEmitter();
+
 let base = 'main_d.css',
     main_arr = [`<li class="out main_content">Главная страница</li>`],
-    main_cont = [];
-// Чтение контента директории
+    main_cont = [] ;
+
+
 async function readContentDirectory() {
     try {
         const dirPath = path.join(__dirname, 'content');
-        await fs.access(dirPath);
+        await fs.access(dirPath); 
         const files = await fs.readdir(dirPath);
         for (const elem of files) {
             const filePath = path.join(dirPath, elem);
             const stats = await fs.stat(filePath);
-            if (stats.isDirectory()) continue;
-            
+            if (stats.isDirectory()) {
+                continue;
+            }
             const fileContent = await fs.readFile(filePath, 'utf-8');
             const $ = cheerio.load(fileContent);
             const zag = $("h1").text();
@@ -38,8 +38,9 @@ async function readContentDirectory() {
         console.error(`Ошибка: ${error.message}`);
     }
 }
+
 readContentDirectory();
-// CORS middleware
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -47,55 +48,46 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
+
 app.options('*', (req, res) => {
     res.sendStatus(200);
 });
-// Статические файлы с правильными MIME типами
-app.use(express.static(__dirname, {
-    setHeaders: (res, path) => {
-        if (path.endsWith('.html')) {
-            res.setHeader('Content-Type', 'text/html; charset=UTF-8');
-        }
-    }
-}));
+
+app.use(express.static(__dirname));
 app.use('/scripts', express.static(path.join(__dirname, 'scripts'), {
     setHeaders: (res, path) => {
         if (path.endsWith('.js')) {
             res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
-            res.setHeader('X-Content-Type-Options', 'nosniff');
-            res.setHeader('Cache-Control', 'public, max-age=31536000');
         }
     }
 }));
-app.use('/css', express.static(path.join(__dirname, 'css'), {
-    setHeaders: (res, path) => {
-        if (path.endsWith('.css')) {
-            res.setHeader('Content-Type', 'text/css; charset=UTF-8');
-        }
-    }
-}));
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// Маршруты
-app.get("/", (req, res) => {
+app.use(express.json());
+app.use('/css', express.static(path.join(__dirname, 'css')));
+
+app.get("/content/:filename"||"/", (req, res) => {
+    if(req.params.content){
+        res.sendFile(path.join(__dirname, 'scout.html'));
+    }
     if (req.query.menu) {
+        res.setHeader('Content-Type', 'application/json');
         res.json(main_arr);
     } else if(req.query.main) {
+        res.setHeader('Content-Type', 'application/json');
         res.json(main_cont);
     } else {
+        console.log(__dirname);
+        res.setHeader('Content-Type', 'text/html');
         res.sendFile(path.join(__dirname, 'scout.html'));
     }
 });
+
 app.get("/favicon.ico", (req, res) => {
-    res.status(204).end();
+    res.status(204).end(); // Отправляем статус 204 No Content для favicon
 });
-myEmitter.on("getLink", (url, res) => {
-    res.sendFile(path.join(__dirname, "scout.html"));
-});
-app.get("/content/:filename", (req, res) => {
-    res.sendFile(path.join(__dirname, 'scout.html'));
-});
-app.post('/', (req, res) => {
+
+
+app.post('/content/:filname'||'/' , (req, res) => {
     switch (req.body.os) {
         case "pc":
             base = 'desctop/index.html';
@@ -106,14 +98,17 @@ app.post('/', (req, res) => {
     }
     res.sendFile(path.join(__dirname, 'css', base));
 });
-app.post('/content', (req, res) => {
+
+app.post('/content', (req, res) =>{
+    res.setHeader('Content-Type', 'text/html');
     res.sendFile(path.join(__dirname, 'content', req.body.name));
 });
-// HTTPS сервер
+
 const options = {
-    key: fsSync.readFileSync('server.key'),
-    cert: fsSync.readFileSync('server.cert')
+    key: fsSync.readFileSync('server.key'), 
+    cert: fsSync.readFileSync('server.cert'),
 };
-https.createServer(options, app).listen(port, () => {
+
+https.createServer(options, app).listen(port, function () {
     console.log(`Сервер запущен на порту ${port}`);
 });
