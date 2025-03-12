@@ -7,8 +7,8 @@
     <script type="module" src="/scripts/main_menu.js"></script>
     <script type="module" src="/scripts/main_data.js"></script>
     <script type="module" src="/scripts/image_full.js"></script>
-    <link rel="stylesheet" href="css/desctop/main_d.css">
-    <link rel="stylesheet" href="css/back-bubble.css">
+    <link rel="stylesheet" href="/css/desctop/main_d.css">
+    <link rel="stylesheet" href="/css/back-bubble.css">
 </head>
 <body>
     <div id="screen"></div>
@@ -34,7 +34,8 @@
                         res();
                         break;
                     default: 
-                    const filename = loc.substring(loc.lastIndexOf('/') + 1);
+                    let filename = loc.substring(loc.lastIndexOf('/') + 1);
+                    alert(filename);
                     contentF(filename);
                    }
                 </script>
