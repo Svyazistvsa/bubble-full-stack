@@ -65,10 +65,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/css', express.static(path.join(__dirname, 'css')));
 
-app.get("/content/:filename"||"/", (req, res) => {
+app.get("/content/:filename", (req, res) => {
     if(req.params.content){
+        res.setHeader('Content-Type', 'text/html');
         res.sendFile(path.join(__dirname, 'scout.html'));
     }
+})
+
+app.get("/", (req, res) => {
+    
     if (req.query.menu) {
         res.setHeader('Content-Type', 'application/json');
         res.json(main_arr);
@@ -83,11 +88,22 @@ app.get("/content/:filename"||"/", (req, res) => {
 });
 
 app.get("/favicon.ico", (req, res) => {
-    res.status(204).end(); // Отправляем статус 204 No Content для favicon
+    res.status(204).end(); 
 });
 
+app.post('/content/:filname', (req, res) => {
+    switch (req.body.os) {
+        case "pc":
+            base = 'desctop/index.html';
+            break;
+        case "mobile":
+            base = 'mobile/index.html';
+            break;
+    }
+    res.sendFile(path.join(__dirname, 'css', base));
+});
 
-app.post('/content/:filname'||'/' , (req, res) => {
+app.post('/' , (req, res) => {
     switch (req.body.os) {
         case "pc":
             base = 'desctop/index.html';
