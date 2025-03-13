@@ -6,31 +6,31 @@ let main = document.getElementsByTagName("main")[0],
     subMenu = document.querySelector("#subMenu"),
     scrollPosition = undefined;
 
-window.addEventListener("popstate", (e) => {
+window.addEventListener("popstate", async(e) => {
+    if (e.state) {
         switch(e.state.name){
             case 'main':                
-                res();
-                scrollP(e);
+                await res();
                 break;
-            default :               
-                contentF(e.state.name);
-                scrollP(e);
+            default:               
+                await contentF(e.state.name);
         }
+        scrollP(e);
+    }
     })
 
-document.addEventListener("pointerdown", (e) => {   
+document.addEventListener("pointerdown", async (e) => {   
     if(e.target.hasAttribute("data-name")){
         let name = e.target.dataset.name;
         scrollPosition = { x: window.scrollX, y: window.scrollY };
-        alert(cp());
         history.pushState({name: cp(), scrollPosition, path:window.location.pathname }, "", window.location.pathname);
-        contentF(name);
+        await contentF(name);
         scrollP(e);               
     }
     if(e.target.classList.contains("main_content")){
         scrollPosition = { x: window.scrollX, y: window.scrollY };
         history.pushState({name: cp(), scrollPosition, path:"/"},"", "/");
-        res();
+        await res();
         scrollP(e);
     }
 })
@@ -45,6 +45,7 @@ let contentF = async (name) => {
     if (response.ok) {
         const newDocument = await response.text();
         main.innerHTML = newDocument;
+        //scrollPosition = { x: 0, y: 0 };
         history.replaceState({name: name, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
         if(subMenu.classList.contains("hidden")) subMenu.classList.remove("hidden");
         document.dispatchEvent(new CustomEvent("newContent", {bubbles:true}));        
@@ -64,6 +65,7 @@ let res = async () =>{
         content.forEach((item) => {
             main.innerHTML +=item;
         })
+        //scrollPosition = { x: 0, y: 0 };
         history.replaceState({name: "main", path: "/"}, "", "/");
         subMenu.classList.add("hidden");
         if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
