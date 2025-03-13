@@ -27,7 +27,7 @@
                 <script type="module">
                    import {res, contentF} from "../../scripts/main_data.js"
                    
-                    window.addEventListener("DOMContentLoaded", function() {
+                    window.addEventListener("DOMContentLoaded", () => {
                         let currentPath = window.location.pathname;
 
                         if (currentPath.startsWith('/content/')) {

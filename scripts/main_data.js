@@ -22,13 +22,14 @@ document.addEventListener("pointerdown", (e) => {
     if(e.target.hasAttribute("data-name")){
         let name = e.target.dataset.name;
         scrollPosition = { x: window.scrollX, y: window.scrollY };
-        history.pushState({name: name, scrollPosition, path:"/content/"+name+"/" }, "", "/content/"+name+"/");
+        alert(cp());
+        history.pushState({name: cp(), scrollPosition, path:window.location.pathname }, "", window.location.pathname);
         contentF(name);
         scrollP(e);               
     }
     if(e.target.classList.contains("main_content")){
         scrollPosition = { x: window.scrollX, y: window.scrollY };
-        history.pushState({name: "main", scrollPosition, path:"/"},"", "/");
+        history.pushState({name: cp(), scrollPosition, path:"/"},"", "/");
         res();
         scrollP(e);
     }
@@ -44,7 +45,7 @@ let contentF = async (name) => {
     if (response.ok) {
         const newDocument = await response.text();
         main.innerHTML = newDocument;
-       
+        history.replaceState({name: name, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
         if(subMenu.classList.contains("hidden")) subMenu.classList.remove("hidden");
         document.dispatchEvent(new CustomEvent("newContent", {bubbles:true}));        
     } else {
@@ -53,7 +54,7 @@ let contentF = async (name) => {
 }
 
 let res = async () =>{
-    let response = await fetch("/?main=main", {
+    let response = await fetch(`${cp()}?main=main`, {
         method: 'GET',
         headers: { "Content-Type": "application/json" },
     });
@@ -71,13 +72,25 @@ let res = async () =>{
     }        
 }
 
-function scrollP(e) {
+let scrollP = (e) => {
     if (e.state && e.state.scrollPosition) {
         const { x, y } = e.state.scrollPosition;
         window.scrollTo(x, y);
       } else {
-        window.scrollTo(0, 0); // либо прокручиваем страницу вверх по умолчанию
+        window.scrollTo(0, 0); 
       }
 }
 
-export {res, contentF};
+let cp = () => {
+    let currentPath = window.location.pathname,
+        name,
+        parts = currentPath.split('/');
+    if (currentPath.startsWith('/content/') && parts.length >= 3 && parts[2] !== "") {
+            name = parts[2];            
+    } else {    
+        name = "/";
+    }
+    return name;
+}
+
+export {res, contentF, cp};
