@@ -64,7 +64,7 @@ let res = async () =>{
         content.forEach((item) => {
             main.innerHTML +=item;
         })
-        
+        history.replaceState({name: "main", path: "/"}, "", "/");
         subMenu.classList.add("hidden");
         if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
     } else {
@@ -93,4 +93,4 @@ let cp = () => {
     return name;
 }
 
-export {res, contentF, cp};
+export {res, contentF};
