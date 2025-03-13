@@ -1,38 +1,41 @@
 "use strict"
 
+history.scrollRestoration = "manual";
+
 let main = document.getElementsByTagName("main")[0],
-    subMenu = document.querySelector("#subMenu");    
+    subMenu = document.querySelector("#subMenu"),
+    scrollPosition = undefined;
 
 window.addEventListener("popstate", (e) => {
-    
         switch(e.state.name){
-            case 'main':
+            case 'main':                
                 res();
                 scrollP(e);
                 break;
-            default : 
+            default :               
                 contentF(e.state.name);
-                scrollP(e);            
+                scrollP(e);
         }
     })
 
 document.addEventListener("pointerdown", (e) => {   
     if(e.target.hasAttribute("data-name")){
         let name = e.target.dataset.name;
+        scrollPosition = { x: window.scrollX, y: window.scrollY };
+        history.pushState({name: name, scrollPosition, path:"/content/"+name+"/" }, "", "/content/"+name+"/");
         contentF(name);
-        const scrollPosition = { x: window.scrollX, y: window.scrollY };
-        alert(scrollPosition[1]);
-        history.pushState({name: name, scrollPosition, path:"https://localhost:3000/content/"+name+"/" }, "", "https://localhost:3000/content/"+name+"/");       
+        scrollP(e);               
     }
     if(e.target.classList.contains("main_content")){
-        const scrollPosition = { x: window.scrollX, y: window.scrollY };
+        scrollPosition = { x: window.scrollX, y: window.scrollY };
+        history.pushState({name: "main", scrollPosition, path:"/"},"", "/");
         res();
-        history.pushState({name: "main", scrollPosition, path:"https://localhost:3000"},"", "https://localhost:3000");
+        scrollP(e);
     }
 })
 
 let contentF = async (name) => {
-    let response = await fetch("https://localhost:3000/content", {
+    let response = await fetch("/content", {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({name : name}),
@@ -41,6 +44,7 @@ let contentF = async (name) => {
     if (response.ok) {
         const newDocument = await response.text();
         main.innerHTML = newDocument;
+       
         if(subMenu.classList.contains("hidden")) subMenu.classList.remove("hidden");
         document.dispatchEvent(new CustomEvent("newContent", {bubbles:true}));        
     } else {
@@ -49,7 +53,7 @@ let contentF = async (name) => {
 }
 
 let res = async () =>{
-    let response = await fetch("https://localhost:3000?main=main", {
+    let response = await fetch("/?main=main", {
         method: 'GET',
         headers: { "Content-Type": "application/json" },
     });
@@ -59,11 +63,11 @@ let res = async () =>{
         content.forEach((item) => {
             main.innerHTML +=item;
         })
+        
         subMenu.classList.add("hidden");
         if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
     } else {
         console.log("Error download");
-        return []; 
     }        
 }
 
