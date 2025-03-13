@@ -4,26 +4,30 @@ let main = document.getElementsByTagName("main")[0],
     subMenu = document.querySelector("#subMenu");    
 
 window.addEventListener("popstate", (e) => {
-    if(e.state){
+    
         switch(e.state.name){
             case 'main':
                 res();
+                scrollP(e);
                 break;
             default : 
-                contentF(e.state.name);            
+                contentF(e.state.name);
+                scrollP(e);            
         }
-    }
-})
+    })
 
 document.addEventListener("pointerdown", (e) => {   
     if(e.target.hasAttribute("data-name")){
         let name = e.target.dataset.name;
         contentF(name);
-        history.pushState({name: name, path:"https://localhost:3000/content/"+name+"/" }, "", "https://localhost:3000/content/"+name+"/");       
+        const scrollPosition = { x: window.scrollX, y: window.scrollY };
+        alert(scrollPosition[1]);
+        history.pushState({name: name, scrollPosition, path:"https://localhost:3000/content/"+name+"/" }, "", "https://localhost:3000/content/"+name+"/");       
     }
     if(e.target.classList.contains("main_content")){
+        const scrollPosition = { x: window.scrollX, y: window.scrollY };
         res();
-        history.pushState({name: "main", path:"https://localhost:3000"},"", "https://localhost:3000");
+        history.pushState({name: "main", scrollPosition, path:"https://localhost:3000"},"", "https://localhost:3000");
     }
 })
 
@@ -61,6 +65,15 @@ let res = async () =>{
         console.log("Error download");
         return []; 
     }        
+}
+
+function scrollP(e) {
+    if (e.state && e.state.scrollPosition) {
+        const { x, y } = e.state.scrollPosition;
+        window.scrollTo(x, y);
+      } else {
+        window.scrollTo(0, 0); // либо прокручиваем страницу вверх по умолчанию
+      }
 }
 
 export {res, contentF};
