@@ -14,24 +14,31 @@ window.addEventListener("popstate", async(e) => {
                 break;
             default:               
                 await contentF(e.state.name);
+
         }
-        scrollP(e);
+        
     }
+    scrollP();
     })
 
 document.addEventListener("pointerdown", async (e) => {   
     if(e.target.hasAttribute("data-name")){
         let name = e.target.dataset.name;
-        scrollPosition = { x: window.scrollX, y: window.scrollY };
-        history.pushState({name: cp(), scrollPosition, path:window.location.pathname }, "", window.location.pathname);
+        //scrollPosition = { x: window.scrollX, y: window.scrollY };
+        history.pushState({name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);        
         await contentF(name);
-        scrollP(e);               
+        
+        
+        window.scrollTo(0, 0);
+        
     }
     if(e.target.classList.contains("main_content")){
-        scrollPosition = { x: window.scrollX, y: window.scrollY };
-        history.pushState({name: cp(), scrollPosition, path:"/"},"", "/");
+        //scrollPosition = { x: window.scrollX, y: window.scrollY };
+        history.pushState({name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname},"", window.location.pathname);
         await res();
-        scrollP(e);
+        
+        
+        window.scrollTo(0, 0);
     }
 })
 
@@ -45,8 +52,9 @@ let contentF = async (name) => {
     if (response.ok) {
         const newDocument = await response.text();
         main.innerHTML = newDocument;
+        history.pushState({name: name, scroll: { x: 0, y: 0 }, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
+        //history.replaceState({name: name, scroll: {x: 0, y: 0}, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
         //scrollPosition = { x: 0, y: 0 };
-        history.replaceState({name: name, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
         if(subMenu.classList.contains("hidden")) subMenu.classList.remove("hidden");
         document.dispatchEvent(new CustomEvent("newContent", {bubbles:true}));        
     } else {
@@ -65,8 +73,9 @@ let res = async () =>{
         content.forEach((item) => {
             main.innerHTML +=item;
         })
-        //scrollPosition = { x: 0, y: 0 };
-        history.replaceState({name: "main", path: "/"}, "", "/");
+        history.pushState({name: "main", scroll: { x: 0, y: 0 }, path: "/"}, "", "/");
+       // scrollPosition = {x: 0, y: 0 };
+        //history.replaceState({name: "main", scroll: {x: 0, y: 0}, path: "/"}, "", "/");
         subMenu.classList.add("hidden");
         if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
     } else {
@@ -75,13 +84,17 @@ let res = async () =>{
 }
 
 let scrollP = (e) => {
-    if (e.state && e.state.scrollPosition) {
-        const { x, y } = e.state.scrollPosition;
-        window.scrollTo(x, y);
-      } else {
-        window.scrollTo(0, 0); 
-      }
-}
+    const state = history.state || {};
+    
+  if (state.scroll &&  state.scroll.y !== 0) {
+    alert(state.scroll.y)
+   const { x, y } = state.scroll;
+   window.scrollTo(x, y);
+  } if (e == 'zero'){
+    alert('zero')
+   window.scrollTo(0, 0);
+  }
+};
 
 let cp = () => {
     let currentPath = window.location.pathname,
