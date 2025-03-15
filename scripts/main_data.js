@@ -1,6 +1,6 @@
 "use strict"
 
-history.scrollRestoration = "manual";
+window.history.scrollRestoration = "manual";
 
 let main = document.getElementsByTagName("main")[0],
     subMenu = document.querySelector("#subMenu");
@@ -70,18 +70,18 @@ let res = async () =>{
     }        
 }
 
-let scrollP = (e) => {
-    const state = history.state || {};
-    
-  if (state.scroll &&  state.scroll.y !== 0) {
-    alert(state.scroll.y);
-   const { x, y } = state.scroll;
-   window.scrollTo(x, y);
-  } if (e == 'zero'){
-    alert('zero');
-   window.scrollTo(0, 0);
-  }
-};
+//let scrollP = (e) => {
+//    const state = history.state || {};
+//    
+//  if (state.scroll &&  state.scroll.y !== 0) {
+//    alert(state.scroll.y);
+//   const { x, y } = state.scroll;
+//   window.scrollTo(x, y);
+//  } if (e == 'zero'){
+//    alert('zero');
+//   window.scrollTo(0, 0);
+//  }
+//};
 
 let cp = () => {
     let currentPath = window.location.pathname,
