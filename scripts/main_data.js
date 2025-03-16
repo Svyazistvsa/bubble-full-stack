@@ -6,11 +6,14 @@ let main = document.getElementsByTagName("main")[0],
     subMenu = document.querySelector("#subMenu");
 
 window.addEventListener("popstate", async(e) => {
-    history.replaceState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);
+    //history.replaceState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);
     if (e.state) {
         switch(e.state.name){
             case 'main':                
                 await res();
+                break;
+            case 'relax':
+                hid("yes");
                 break;
             default:               
                 await contentF(e.state.name);
@@ -22,14 +25,14 @@ window.addEventListener("popstate", async(e) => {
 
 document.addEventListener("pointerdown", async (e) => {   
     if(e.target.hasAttribute("data-name")){
-        hid("no");
+        
         let name = e.target.dataset.name;
         history.pushState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);        
         await contentF(name);        
         window.scrollTo(0, 0);
     }
     if(e.target.classList.contains("main_content")){
-        hid("no");
+       
         history.pushState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);
         await res();        
         window.scrollTo(0, 0);
@@ -50,6 +53,7 @@ let contentF = async (name) => {
     });
 
     if (response.ok) {
+        hid("no");
         const newDocument = await response.text();
         main.innerHTML = newDocument;
         history.replaceState({name: name, scroll: { x: window.scrollX, y: window.scrollY}, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
@@ -66,6 +70,7 @@ let res = async () =>{
         headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
+        hid("no");
         let content = await response.json();
         main.innerHTML = "";
         content.forEach((item) => {
