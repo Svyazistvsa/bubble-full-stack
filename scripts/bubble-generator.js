@@ -37,15 +37,15 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  function destroy(){
-    let arr = screen.querySelectorAll(".backB");
-    for(let i=0; i<arr.length; i++){
-        let client = arr[i].getBoundingClientRect();
-        if(client.right > ww){
-            arr[i].remove();
-        }
-    }
-    
-  }  
+  //function destroy(){
+  //  let arr = screen.querySelectorAll(".backB");
+  //  for(let i=0; i<arr.length; i++){
+  //      let client = arr[i].getBoundingClientRect();
+  //      if(client.right > ww){
+  //          arr[i].remove();
+  //      }
+  //  }
+  //  
+  //}  
   
 let timerId = setInterval(generator, 500);

@@ -28,18 +28,26 @@
             <main>
                 <script type="module">
                     import {res, contentF} from "../../scripts/main_data.js"
-                    
-                    let loc = window.location.pathname,
-                        main = document.getElementsByTagName("main")[0];
- 
-                    switch(loc){
-                     case "/": 
-                         res();
-                         break;
-                     default: 
-                     let filename = loc.slice(9, -1);
-                     contentF(filename);
-                    }
+                   
+                   window.addEventListener("DOMContentLoaded", () => {
+                       let currentPath = window.location.pathname;
+
+                       if (currentPath.startsWith('/content/')) {
+                           let parts = currentPath.split('/');
+                       
+                           if (parts.length >= 3 && parts[2] !== "") {
+                               contentF(parts[2]);
+                               history.replaceState({name: parts[2], path: currentPath}, "", currentPath);
+                           } else {
+                               res();
+                               history.replaceState({name: "main", path: "/"}, "", "/");
+                           }
+                       } else {
+                       
+                           res();
+                           history.replaceState({name: "main", path: "/"}, "", "/");
+                       }
+                   });
                  </script>
             </main>                      
         <footer>
