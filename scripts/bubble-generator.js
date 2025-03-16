@@ -5,11 +5,11 @@ let screen = document.querySelector('#screen'),
     pudding, diam;
 
 let bubble = (ww) =>{
-    if(ww >= 400){
+    if(ww <= 450){
         pudding = 20;
         diam = 100;
     } else {
-        pudding = 50;
+        pudding = 100;
         diam = 200;
     }    
 }

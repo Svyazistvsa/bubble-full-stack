@@ -22,15 +22,23 @@ window.addEventListener("popstate", async(e) => {
 
 document.addEventListener("pointerdown", async (e) => {   
     if(e.target.hasAttribute("data-name")){
+        hid("no");
         let name = e.target.dataset.name;
         history.pushState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);        
         await contentF(name);        
-        window.scrollTo(0, 0);        
+        window.scrollTo(0, 0);
     }
     if(e.target.classList.contains("main_content")){
+        hid("no");
         history.pushState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);
         await res();        
         window.scrollTo(0, 0);
+    }
+    if(e.target.classList.contains("relax")){
+        hid("yes");
+        history.pushState({ name: "relax", scroll: { x: window.scrollX, y: window.scrollY }, path: "/relax" }, "", "/relax");
+        //history.replaceState({name: "relax", scroll: { x: window.scrollX, y: window.scrollY}, path: "/relax" }, "", "/relax");
+        
     }
 });
 
@@ -71,18 +79,22 @@ let res = async () =>{
     }        
 }
 
-//let scrollP = (e) => {
-//    const state = history.state || {};
-//    
-//  if (state.scroll &&  state.scroll.y !== 0) {
-//    alert(state.scroll.y);
-//   const { x, y } = state.scroll;
-//   window.scrollTo(x, y);
-//  } if (e == 'zero'){
-//    alert('zero');
-//   window.scrollTo(0, 0);
-//  }
-//};
+let hid = (question) =>{
+    let page,
+        footer = document.querySelector("footer");
+
+    if(document.querySelector("#desctop")) page = document.querySelector("#page");
+    if(document.querySelector("#mobile")) page = main;
+
+    if(question == "yes"){
+        page.classList.add("hidden");
+        footer.classList.add("hidden");
+    } 
+    if(question == "no") {
+        if(page.classList.contains("hidden")) page.classList.remove("hidden");
+        if(footer.classList.contains("hidden")) footer.classList.remove("hidden");
+    }    
+}
 
 let cp = () => {
     let currentPath = window.location.pathname,
