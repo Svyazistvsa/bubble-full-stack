@@ -9,7 +9,7 @@ let bubble = (ww) =>{
         pudding = 20;
         diam = 100;
     } else {
-        pudding = 150;
+        pudding = 50;
         diam = 200;
     }    
 }
