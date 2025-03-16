@@ -23,12 +23,12 @@ window.addEventListener("popstate", async(e) => {
 document.addEventListener("pointerdown", async (e) => {   
     if(e.target.hasAttribute("data-name")){
         let name = e.target.dataset.name;
-        history.replaceState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);        
+        history.pushState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);        
         await contentF(name);        
         window.scrollTo(0, 0);        
     }
     if(e.target.classList.contains("main_content")){
-        history.replaceState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);
+        history.pushState({ name: cp(), scroll: { x: window.scrollX, y: window.scrollY }, path:window.location.pathname }, "", window.location.pathname);
         await res();        
         window.scrollTo(0, 0);
     }
@@ -44,7 +44,7 @@ let contentF = async (name) => {
     if (response.ok) {
         const newDocument = await response.text();
         main.innerHTML = newDocument;
-        history.pushState({name: name, scroll: { x: window.scrollX, y: window.scrollY}, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
+        history.replaceState({name: name, scroll: { x: window.scrollX, y: window.scrollY}, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
         if(subMenu.classList.contains("hidden")) subMenu.classList.remove("hidden");
         document.dispatchEvent(new CustomEvent("newContent", {bubbles:true}));        
     } else {
@@ -63,7 +63,7 @@ let res = async () =>{
         content.forEach((item) => {
             main.innerHTML +=item;
         });
-        history.poshState({name: "main", scroll: { x: window.scrollX, y: window.scrollY}, path: "/"}, "", "/");
+        history.replaceState({name: "main", scroll: { x: window.scrollX, y: window.scrollY}, path: "/"}, "", "/");
         subMenu.classList.add("hidden");
         if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
     } else {

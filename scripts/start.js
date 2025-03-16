@@ -44,7 +44,7 @@ async function getOS() {
                 document.open();
                 document.write(newDocument);
                 document.close();
-                history.replaceState({name: "main",scroll: { x: window.scrollX, y: window.scrollY}, path:"https://localhost:3000"+loc},"", "https://localhost:3000"+loc);
+                history.pushState({name: "main",scroll: { x: window.scrollX, y: window.scrollY}, path:"https://localhost:3000"+loc},"", "https://localhost:3000"+loc);
             } else {
                 console.error('Ошибка при отправке запроса:', response.status);
             }
