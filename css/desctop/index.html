@@ -25,7 +25,7 @@
             </nav>
             <main>
                 <script type="module">
-                   import {res, contentF} from "../../scripts/main_data.js"
+                   import {res, contentF, hid} from "../../scripts/main_data.js"
                    
                     window.addEventListener("DOMContentLoaded", () => {
                         let currentPath = window.location.pathname;
@@ -40,8 +40,10 @@
                                 res();
                                 history.replaceState({name: "main", path: "/"}, "", "/");
                             }
-                        } else {
-                        
+                        }else if (currentPath.startsWith('/relax')){
+                            hid("yes")
+                            history.replaceState({name: "relax", path: "/relax"}, "", "/relax");
+                        } else {                        
                             res();
                             history.replaceState({name: "main", path: "/"}, "", "/");
                         }

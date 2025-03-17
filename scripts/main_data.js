@@ -113,4 +113,4 @@ let cp = () => {
     return name;
 }
 
-export {res, contentF};
+export {res, contentF, hid};
