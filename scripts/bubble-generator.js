@@ -29,7 +29,8 @@ screen.addEventListener("animationend", (e) => {
     }
 )
 
-function generator(){    
+function generator(){  
+    if(document.visibilityState !== "visible") return;  
     let div = document.createElement('div'),
         bottomPoint = getRandomInt(pudding, ww-(pudding)),
         diametr = getRandomInt(10, diam),

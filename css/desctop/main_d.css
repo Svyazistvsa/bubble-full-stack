@@ -16,7 +16,7 @@ body {
 #screen {
     background: linear-gradient(0deg, var(--darkGreen) 1%, var(--green));
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     position: fixed;
     left: 0;
     top: 0;
