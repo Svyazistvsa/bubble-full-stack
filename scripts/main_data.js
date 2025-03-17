@@ -19,8 +19,6 @@ window.addEventListener("popstate", async(e) => {
                 await contentF(e.state.name);
         }        
     }
-    const { x, y } = e.state.scroll;
-    window.scrollTo(x, y);
 });
 
 document.addEventListener("pointerdown", async (e) => {   
@@ -40,7 +38,6 @@ document.addEventListener("pointerdown", async (e) => {
     if(e.target.classList.contains("relax")){
         hid("yes");
         history.pushState({ name: "relax", scroll: { x: window.scrollX, y: window.scrollY }, path: "/relax" }, "", "/relax");
-        //history.replaceState({name: "relax", scroll: { x: window.scrollX, y: window.scrollY}, path: "/relax" }, "", "/relax");
         
     }
 });
