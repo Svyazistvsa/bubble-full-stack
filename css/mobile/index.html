@@ -27,27 +27,29 @@
         </header>                
             <main>
                 <script type="module">
-                    import {res, contentF} from "../../scripts/main_data.js"
-                   
-                   window.addEventListener("DOMContentLoaded", () => {
-                       let currentPath = window.location.pathname;
-
-                       if (currentPath.startsWith('/content/')) {
-                           let parts = currentPath.split('/');
-                       
-                           if (parts.length >= 3 && parts[2] !== "") {
-                               contentF(parts[2]);
-                               history.replaceState({name: parts[2], path: currentPath}, "", currentPath);
-                           } else {
-                               res();
-                               history.replaceState({name: "main", path: "/"}, "", "/");
-                           }
-                       } else {
-                       
-                           res();
-                           history.replaceState({name: "main", path: "/"}, "", "/");
-                       }
-                   });
+                    import {res, contentF, hid} from "../../scripts/main_data.js"
+                    
+                     window.addEventListener("DOMContentLoaded", () => {
+                         let currentPath = window.location.pathname;
+ 
+                         if (currentPath.startsWith('/content/')) {
+                             let parts = currentPath.split('/');
+                         
+                             if (parts.length >= 3 && parts[2] !== "") {
+                                 contentF(parts[2]);
+                                 history.replaceState({name: parts[2], path: currentPath}, "", currentPath);
+                             } else {
+                                 res();
+                                 history.replaceState({name: "main", path: "/"}, "", "/");
+                             }
+                         }else if (currentPath.startsWith('/relax')){
+                             hid("yes")
+                             history.replaceState({name: "relax", path: "/relax"}, "", "/relax");
+                         } else {                        
+                             res();
+                             history.replaceState({name: "main", path: "/"}, "", "/");
+                         }
+                     });
                  </script>
             </main>                      
         <footer>
