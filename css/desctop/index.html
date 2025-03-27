@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>"Bubble"</title>
-    <script type="module" src="/scripts/main_menu.js"></script>
     <script type="module" src="/scripts/main_data.js"></script>
+    <script type="module" src="/scripts/main_menu.js"></script>
     <script type="module" src="/scripts/image_full.js"></script>
     <link rel="stylesheet" href="/css/desctop/main_d.css">
     <link rel="stylesheet" href="/css/back-bubble.css">
@@ -25,7 +25,7 @@
             </nav>
             <main>
                 <script type="module">
-                   import {res, contentF, hid, scrollP} from "../../scripts/main_data.js"
+                   import {res, contentF, hid, scrollP, relaxWork} from "../../scripts/main_data.js"
                    console.log("start "+history.length);
                     window.addEventListener("DOMContentLoaded", () => {
                         let currentPath = window.location.pathname;
@@ -36,7 +36,7 @@
                                 contentF(parts[2],"y");
                             } 
                         } else if (currentPath.startsWith('/relax')){
-                            hid("yes");
+                            relaxWork("y");
                         } else {
                             res("y");
                         }

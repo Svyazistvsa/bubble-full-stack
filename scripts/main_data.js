@@ -8,8 +8,7 @@ let main = document.getElementsByTagName("main")[0],
 
 let scrollE = () => {     
     scrollP = window.scrollY;;
-    console.log(scrollP);
-    history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
+    history.replaceState({name: cp(), scroll: scrollP, path: window.location.pathname},"",window.location.pathname);
 }
 
 let throttle = (callee, timeout) => {
@@ -29,13 +28,12 @@ window.addEventListener("scroll", scrollET);
 
 window.addEventListener("popstate", async(e) => { 
     if (e.state) {
-          console.log(e.state.scroll+" and "+scrollP+" length "+history.length );
         switch(e.state.name){
+            case 'relax':
+                relaxWork("y");
+                break;
             case 'main':                
                 await res("y");                
-                break;
-            case 'relax':
-                hid("yes");
                 break;
             default:                             
                 await contentF(e.state.name, "y");                
@@ -53,10 +51,21 @@ document.addEventListener("pointerdown", async (e) => {
         await res();        
     }
     if(e.target.classList.contains("relax")){
-        hid("yes");
-        history.pushState({ name: "relax", scroll: +`${scrollP}`, path: "/relax" }, "", "/relax");        
+      relaxWork();   
     }
 });
+
+let relaxWork = (pop) => {
+    if(pop == "y"){
+        hid("yes");
+        window.scrollTo(0,0);
+    } else {
+        history.pushState({ name: "relax", scroll: +`${scrollP}`, path: "/relax" }, "", "/relax");
+        hid("yes");
+        window.scrollTo(0,0);    
+    }
+    document.body.style.overflow = "hidden";
+}
 
 let contentF = async (name, pop) => {
     let response = await fetch("/content", {
@@ -81,6 +90,7 @@ let contentF = async (name, pop) => {
     } else {
         console.error('Ошибка при отправке запроса:', response.status);
     }
+    document.body.style.overflow = "auto";
 }
 
 let res = async (pop) =>{
@@ -96,22 +106,22 @@ let res = async (pop) =>{
             content.forEach((item) => {
             main.innerHTML +=item;
         });
-        }else{
+        } else {
             history.pushState({name: "main", path: "/"}, "", "/");
             let content = await response.json();
             main.innerHTML = "";
             content.forEach((item) => {
             main.innerHTML +=item;
-            window.scrollTo(0, 0);
-            
         });
+        window.scrollTo(0, 0); 
         }        
         subMenu.classList.add("hidden");
         if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
         
     } else {
         console.log("Error download");
-    }        
+    }
+    document.body.style.overflow = "auto";
 }
 
 let hid = (question) =>{
@@ -120,6 +130,7 @@ let hid = (question) =>{
 
     if(document.querySelector("#desctop")) page = document.querySelector("#page");
     if(document.querySelector("#mobile")) page = main;
+
     if(question == "yes"){
         page.classList.add("hidden");
         footer.classList.add("hidden");
@@ -134,12 +145,14 @@ let cp = () => {
     let currentPath = window.location.pathname,
         name,
         parts = currentPath.split('/');
-    if (currentPath.startsWith('/content/') && parts.length >= 3 && parts[2] !== "") {
+    if (currentPath.startsWith('/content/') && parts[2] !== "") {
         name = parts[2];            
+    }else if (currentPath.startsWith('/relax')) {
+        name = "relax";
     } else {    
         name = "main";
     }
     return name;
 }
 
-export {res, contentF, hid, scrollP};
+export {res, contentF, hid, relaxWork, scrollP};
