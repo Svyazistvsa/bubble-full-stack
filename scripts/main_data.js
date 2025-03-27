@@ -10,7 +10,6 @@ let scrollE = () => {
     scrollP = window.scrollY;;
     console.log(scrollP);
     history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
-    //return scrollP;
 }
 
 let throttle = (callee, timeout) => {
@@ -29,7 +28,6 @@ let scrollET = throttle(scrollE, 100);
 window.addEventListener("scroll", scrollET);
 
 window.addEventListener("popstate", async(e) => { 
-    //alert(scrollP);   
     if (e.state) {
           console.log(e.state.scroll+" and "+scrollP+" length "+history.length );
         switch(e.state.name){
@@ -48,12 +46,10 @@ window.addEventListener("popstate", async(e) => {
 
 document.addEventListener("pointerdown", async (e) => {   
     if(e.target.hasAttribute("data-name")){
-        //history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
         let name = e.target.dataset.name;
         await contentF(name);
     }
     if(e.target.classList.contains("main_content")){
-        //history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
         await res();        
     }
     if(e.target.classList.contains("relax")){
@@ -71,24 +67,18 @@ let contentF = async (name, pop) => {
 
     if (response.ok) {
         hid("no");
-        //const newDocument = await response.text();
-        //main.innerHTML = newDocument;
-        if (pop == "y"){      
-            //alert("y");     
-            history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
+        if (pop == "y"){        
+            //history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
             const newDocument = await response.text();
             main.innerHTML = newDocument;
         }else{
-            //alert("n");
             history.pushState({name: name, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
             const newDocument = await response.text();
             main.innerHTML = newDocument;
             window.scrollTo(0, 0);
-            
         }        
         if(subMenu.classList.contains("hidden")) subMenu.classList.remove("hidden");
         document.dispatchEvent(new CustomEvent("newContent", {bubbles:true}));
-        
     } else {
         console.error('Ошибка при отправке запроса:', response.status);
     }
@@ -101,13 +91,8 @@ let res = async (pop) =>{
     });
     if (response.ok) {
         hid("no");
-        //let content = await response.json();
-        //main.innerHTML = "";
-        //content.forEach((item) => {
-        //    main.innerHTML +=item;
-        //});
         if (pop == "y"){
-            history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
+            //history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
             let content = await response.json();
             main.innerHTML = "";
             content.forEach((item) => {
