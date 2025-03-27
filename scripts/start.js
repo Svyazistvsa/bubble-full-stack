@@ -31,7 +31,7 @@ async function getOS() {
                     location = loc;    
             }
             
-            let response = await fetch("https://localhost:3000"+loc, {
+            let response = await fetch("https://localhost:3000"+location, {
                 method: 'POST',
                 headers: {                  
                     'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ async function getOS() {
                 document.open();
                 document.write(newDocument);
                 document.close();
-                history.pushState({name: "main",scroll: { x: 0, y: 0}, path:"https://localhost:3000"+loc},"", "https://localhost:3000"+loc);
+                
             } else {
                 console.error('Ошибка при отправке запроса:', response.status);
             }
