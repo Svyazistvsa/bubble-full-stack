@@ -67,8 +67,7 @@ let contentF = async (name, pop) => {
 
     if (response.ok) {
         hid("no");
-        if (pop == "y"){        
-            //history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
+        if (pop == "y"){
             const newDocument = await response.text();
             main.innerHTML = newDocument;
         }else{
@@ -92,7 +91,6 @@ let res = async (pop) =>{
     if (response.ok) {
         hid("no");
         if (pop == "y"){
-            //history.replaceState({name: cp(), scroll: +`${scrollP}`, path: window.location.pathname},"",window.location.pathname);
             let content = await response.json();
             main.innerHTML = "";
             content.forEach((item) => {
