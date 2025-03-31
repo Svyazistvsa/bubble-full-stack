@@ -91,7 +91,15 @@ app.get("/", (req, res) => {
 });
 
 app.get("/favicon.ico", (req, res) => {
-    res.status(204).end(); 
+    const iconPath = path.join(__dirname, 'icons8-bubbles-100.ico');
+    fs.readFile(iconPath, (err, data) => {
+        if(err) {
+            res.status(404).end();
+            return;
+        }
+        res.setHeader('Content-Type', 'image/x-icon');
+        res.send(data);
+    })
 });
 
 app.post('/relax', (req, res) => {

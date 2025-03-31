@@ -119,7 +119,7 @@ let res = async (pop) =>{
         if(document.querySelector(".subUl")) {document.querySelector(".subUl").classList.add("hidden")};
         
     } else {
-        console.log("Error download");
+        console.error("Error download");
     }
     document.body.style.overflow = "auto";
 }
