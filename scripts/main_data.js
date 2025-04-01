@@ -79,6 +79,7 @@ let contentF = async (name, pop) => {
         if (pop == "y"){
             const newDocument = await response.text();
             main.innerHTML = newDocument;
+            history.replaceState({name: cp(), scroll: scrollP, path: window.location.pathname},"",window.location.pathname);
         }else{
             history.pushState({name: name, path: "/content/" + name + "/"}, "", "/content/" + name + "/");
             const newDocument = await response.text();
@@ -105,6 +106,7 @@ let res = async (pop) =>{
             main.innerHTML = "";
             content.forEach((item) => {
             main.innerHTML +=item;
+            history.replaceState({name: cp(), scroll: scrollP, path: window.location.pathname},"",window.location.pathname);
         });
         } else {
             history.pushState({name: "main", path: "/"}, "", "/");
