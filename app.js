@@ -102,7 +102,7 @@ app.get("/favicon.ico", (req, res) => {
     })
 });
 
-app.post('/relax', (req, res) => {
+let choiceHtml = (req) =>{
     switch (req.body.os) {
         case "pc":
             base = 'desctop/index.html';
@@ -111,30 +111,20 @@ app.post('/relax', (req, res) => {
             base = 'mobile/index.html';
             break;
     }
+}
+
+app.post('/relax', (req, res) => {
+    choiceHtml(req);
     res.sendFile(path.join(__dirname, 'css', base));
 });
 
 app.post('/content/:filname', (req, res) => {
-    switch (req.body.os) {
-        case "pc":
-            base = 'desctop/index.html';
-            break;
-        case "mobile":
-            base = 'mobile/index.html';
-            break;
-    }
+    choiceHtml(req);
     res.sendFile(path.join(__dirname, 'css', base));
 });
 
 app.post('/' , (req, res) => {
-    switch (req.body.os) {
-        case "pc":
-            base = 'desctop/index.html';
-            break;
-        case "mobile":
-            base = 'mobile/index.html';
-            break;
-    }
+    choiceHtml(req);
     res.sendFile(path.join(__dirname, 'css', base));
 });
 
@@ -151,3 +141,5 @@ const options = {
 https.createServer(options, app).listen(port, function () {
     console.log(`Сервер запущен на порту ${port}`);
 });
+
+///root/www/bubble-full-stack
