@@ -46,8 +46,8 @@ let choiceHtml = (req) =>{
     let os = req.useragent.os,
         pf;
     console.log(os);
-    if(os.includes("Android"||"iPhone"||"iPad"||"iOS"||"HarmonyOS"||"KaiOS")) pf="mobile";
-    if(os.includes("Linux"||"Windows"||"Mac"||"CrOS")) pf = "pc";
+    if(os.includes("Android")) pf="mobile";
+    if(os.includes("Linux")) pf = "pc";
     
     switch (pf) {
         case "pc":
