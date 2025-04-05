@@ -1,5 +1,6 @@
 const https = require('https');
 const express = require('express');
+const useragent = require('express-useragent');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs').promises;
@@ -41,6 +42,21 @@ async function readContentDirectory() {
 
 readContentDirectory();
 
+let choiceHtml = (req) =>{
+    let os = req.useragent.os,
+        pf;
+    if(os.includes("Linux"||"Windows"||"Mac"||"CrOS")) pf = "pc";
+    if(os.includes("Android"||"iPhone"||"iPad"||"iOS"||"HarmonyOS"||"KaiOS")) pf="mobile";
+    switch (pf) {
+        case "pc":
+            base = 'desctop/index.html';
+            break;
+        case "mobile":
+            base = 'mobile/index.html';
+            break;
+    }
+}
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -61,6 +77,7 @@ app.use('/scripts', express.static(path.join(__dirname, 'scripts'), {
         }
     }
 }));
+app.use(useragent.express());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/css', express.static(path.join(__dirname, 'css')));
@@ -85,8 +102,8 @@ app.get("/", (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.json(main_cont);
     } else {
-        res.setHeader('Content-Type', 'text/html');
-        res.sendFile(path.join(__dirname, 'scout.html'));
+        choiceHtml(req);
+        res.sendFile(path.join(__dirname, 'css', base));
     }
 });
 
@@ -102,16 +119,7 @@ app.get("/favicon.ico", (req, res) => {
     })
 });
 
-let choiceHtml = (req) =>{
-    switch (req.body.os) {
-        case "pc":
-            base = 'desctop/index.html';
-            break;
-        case "mobile":
-            base = 'mobile/index.html';
-            break;
-    }
-}
+
 
 app.post('/relax', (req, res) => {
     choiceHtml(req);
@@ -123,10 +131,10 @@ app.post('/content/:filname', (req, res) => {
     res.sendFile(path.join(__dirname, 'css', base));
 });
 
-app.post('/' , (req, res) => {
-    choiceHtml(req);
-    res.sendFile(path.join(__dirname, 'css', base));
-});
+//app.post('/' , (req, res) => {
+//    choiceHtml(req);
+//    res.sendFile(path.join(__dirname, 'css', base));
+//});
 
 app.post('/content', (req, res) =>{
     res.setHeader('Content-Type', 'text/html');
