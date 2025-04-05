@@ -83,14 +83,14 @@ app.use(express.json());
 app.use('/css', express.static(path.join(__dirname, 'css')));
 
 app.get("/relax", (req, res) => {
-    res.setHeader('Content-Type', 'text/html');
-    res.sendFile(path.join(__dirname, 'scout.html'));
+    choiceHtml(req);
+    res.sendFile(path.join(__dirname, 'css', base));
 })
 
 app.get("/content/:filename", (req, res) => {    
     if(req.params.filename){
-        res.setHeader('Content-Type', 'text/html');
-        res.sendFile(path.join(__dirname, 'scout.html'));
+        choiceHtml(req);
+        res.sendFile(path.join(__dirname, 'css', base));
     }
 })
 
@@ -121,16 +121,16 @@ app.get("/favicon.ico", (req, res) => {
 
 
 
-app.post('/relax', (req, res) => {
-    choiceHtml(req);
-    res.sendFile(path.join(__dirname, 'css', base));
-});
-
-app.post('/content/:filname', (req, res) => {
-    choiceHtml(req);
-    res.sendFile(path.join(__dirname, 'css', base));
-});
-
+//app.post('/relax', (req, res) => {
+//    choiceHtml(req);
+//    res.sendFile(path.join(__dirname, 'css', base));
+//});
+//
+//app.post('/content/:filname', (req, res) => {
+//    choiceHtml(req);
+//    res.sendFile(path.join(__dirname, 'css', base));
+//});
+//
 //app.post('/' , (req, res) => {
 //    choiceHtml(req);
 //    res.sendFile(path.join(__dirname, 'css', base));
