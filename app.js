@@ -7,7 +7,7 @@ const fs = require('fs').promises;
 const fsSync = require('fs');
 const cheerio = require('cheerio');
 const app = express();
-const port = 3000;
+const port = 443;
 
 let base = 'main_d.css',
     main_arr = [`<li class="out main_content">Главная страница</li>`],
@@ -45,6 +45,7 @@ readContentDirectory();
 let choiceHtml = (req) =>{
     let os = req.useragent.os,
         pf;
+    console.log(os);
     if(os.includes("Linux"||"Windows"||"Mac"||"CrOS")) pf = "pc";
     if(os.includes("Android"||"iPhone"||"iPad"||"iOS"||"HarmonyOS"||"KaiOS")) pf="mobile";
     switch (pf) {
