@@ -47,6 +47,8 @@ let choiceHtml = (req) =>{
         base = 'mobile/index.html';
     } else if (req.useragent.isTablet){
         base = 'mobile/index.html';
+    } else if (req.useragent.isIpad){
+        base = 'mobile/index.html';
     } else {
         base = 'desctop/index.html';
     }    
