@@ -127,19 +127,27 @@ let res = async (pop) =>{
 }
 
 let hid = (question) =>{
-    let page,
+    let page,mobMenu,
         footer = document.querySelector("footer");
 
-    if(document.querySelector("#desctop")) page = document.querySelector("#page");
-    if(document.querySelector("#mobile")) page = main;
+    if(document.querySelector("#desctop")) {
+        mobMenu = undefined;    
+        page = document.querySelector("#page");
+    }
+    if(document.querySelector("#mobile")) {
+        page = main;
+        mobMenu = document.querySelector("#subMenu");
+    }
 
     if(question == "yes"){
         page.classList.add("hidden");
         footer.classList.add("hidden");
+        if(mobMenu) mobMenu.classList.add("hidden");
     } 
     if(question == "no") {
         if(page.classList.contains("hidden")) page.classList.remove("hidden");
         if(footer.classList.contains("hidden")) footer.classList.remove("hidden");
+        if( mobMenu && mobMenu.classList.contains("hidden")) mobMenu.classList.add("hidden");
     }    
 }
 
