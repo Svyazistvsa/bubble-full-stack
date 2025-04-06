@@ -28,7 +28,7 @@ async function an_in() {
         }
     })
 
-    butMenu.addEventListener("pointerdown", async (e) => {
+    butMenu.addEventListener("pointerup", async (e) => {
         if(mainMenu.querySelector('li')){
             mainMenu.classList.toggle('hidden');
             return;

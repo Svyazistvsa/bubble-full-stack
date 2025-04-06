@@ -29,7 +29,7 @@ async function readContentDirectory() {
             const $ = cheerio.load(fileContent);
             const zag = $("h1").text();
             const img = $("img.main").attr("src");
-            main_arr.push(`<li class="out" data-name="${elem}">${zag}</li>`);
+            main_arr.push(`<li class="out" data-name="${elem}"><span class="mm">${zag}</span></li>`);
             main_cont.push(
                 `<div class="tile" data-name="${elem}" style="background: url('${img}') center center no-repeat black; background-size: cover;"><span class="zag">${zag}</span></div>`
             );
