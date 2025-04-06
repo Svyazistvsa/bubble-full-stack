@@ -127,15 +127,17 @@ let res = async (pop) =>{
 }
 
 let hid = (question) =>{
-    let page,mobMenu,
+    let page,mobMenu,subUl,
         footer = document.querySelector("footer");
 
     if(document.querySelector("#desctop")) {
+        subUl = undefined;
         mobMenu = undefined;    
         page = document.querySelector("#page");
     }
     if(document.querySelector("#mobile")) {
         page = main;
+        subUl = document.querySelector(".subUl");
         mobMenu = document.querySelector("#subMenu");
     }
 
@@ -143,11 +145,14 @@ let hid = (question) =>{
         page.classList.add("hidden");
         footer.classList.add("hidden");
         if(mobMenu) mobMenu.classList.add("hidden");
+        if(subUl) subUl.classList.add("hidden");
     } 
     if(question == "no") {
         if(page.classList.contains("hidden")) page.classList.remove("hidden");
         if(footer.classList.contains("hidden")) footer.classList.remove("hidden");
         if( mobMenu && mobMenu.classList.contains("hidden")) mobMenu.classList.add("hidden");
+        if( subUl && subUl.classList.contains("hidden")) subUl.classList.add("hidden");
+
     }    
 }
 
