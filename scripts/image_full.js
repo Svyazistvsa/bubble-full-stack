@@ -21,7 +21,7 @@ let full = (e) =>{
         for(let i of clone.classList){
             clone.classList.remove(i);
         }
-        imgScreen.addEventListener("pointerdown", () => {
+        imgScreen.addEventListener("pointerup", () => {
             imgScreen.remove();                
         })
     }
