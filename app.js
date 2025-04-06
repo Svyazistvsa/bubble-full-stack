@@ -45,8 +45,8 @@ readContentDirectory();
 let choiceHtml = (req) =>{
     let os = req.useragent.os,
         pf;
-    console.log(os);
-    if(os.includes("Android")) pf="mobile";
+    console.log(req.useragent);
+    if(os.includes("Andr")) pf="mobile";
     if(os.includes("Linux")) pf = "pc";
     
     switch (pf) {
