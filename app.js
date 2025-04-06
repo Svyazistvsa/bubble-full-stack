@@ -43,7 +43,7 @@ async function readContentDirectory() {
 readContentDirectory();
 
 let choiceHtml = (req) =>{
-    console.log(req.useragent.isAuthoritative);
+    console.log(req.useragent);
     if (req.useragent.isMobile||req.useragent.isTablet/*||req.useragent.isAuthoritative*/){
         base = 'mobile/index.html';
     } else {
