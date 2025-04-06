@@ -4,12 +4,12 @@ let main = document.querySelector("main"),
         allScreen = document.querySelector("body");
 
 document.addEventListener("newContent", () => {    
-    main.removeEventListener("pointerdown", full);
-    main.addEventListener("pointerdown", full);
+    main.removeEventListener("pointerup", full);
+    main.addEventListener("pointerup", full);
 })
 
 let full = (e) =>{
-    allScreen.addEventListener("pointermove", () => {return})
+    //allScreen.addEventListener("pointermove", () => {return})
     let target = e.target;
     if(target.tagName == "IMG"){
         let imgScreen = document.createElement("DIV"),
