@@ -7,7 +7,7 @@ const fs = require('fs').promises;
 const fsSync = require('fs');
 const cheerio = require('cheerio');
 const app = express();
-const port = 3000;
+const port = 443;
 
 let base = 'main_d.css',
     main_arr = [`<li class="out main_content">Главная страница</li>`],
@@ -43,11 +43,12 @@ async function readContentDirectory() {
 readContentDirectory();
 
 let choiceHtml = (req) =>{
+    console.log(req.useragent.isAuthoritative);
     if(req.useragent.isMobile){
         base = 'mobile/index.html';
     } else if (req.useragent.isTablet){
         base = 'mobile/index.html';
-    } else if (req.useragent.isIpad){
+    } else if (req.useragent.isAuthoritative){
         base = 'mobile/index.html';
     } else {
         base = 'desctop/index.html';
