@@ -44,7 +44,7 @@ readContentDirectory();
 
 let choiceHtml = (req) =>{
     console.log(req.useragent.isAuthoritative);
-    if (req.useragent.isMobile||req.useragent.isTablet||req.useragent.isAuthoritative){
+    if (req.useragent.isMobile||req.useragent.isTablet/*||req.useragent.isAuthoritative*/){
         base = 'mobile/index.html';
     } else {
         base = 'desctop/index.html';
