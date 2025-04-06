@@ -9,6 +9,7 @@ document.addEventListener("newContent", () => {
 })
 
 let full = (e) =>{
+    allScreen.addEventListener("pointermove", () => {return})
     let target = e.target;
     if(target.tagName == "IMG"){
         let imgScreen = document.createElement("DIV"),
