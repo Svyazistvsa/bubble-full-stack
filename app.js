@@ -9,7 +9,7 @@ const app = express();
 const port = 443;
 
 let base = 'main_d.css',
-    main_arr = [`<li class="out main_content">Главная страница</li>`],
+    main_arr = [`<li class="out main_content"><span class="mm">Главная страница</span></li>`],
     main_cont = [] ;
 
 
@@ -33,7 +33,7 @@ async function readContentDirectory() {
                 `<div class="tile" data-name="${elem}" style="background: url('${img}') center center no-repeat black; background-size: cover;"><span class="zag">${zag}</span></div>`
             );
         }
-        main_arr.push(`<li class="out relax ">Релакс</li>`);
+        main_arr.push(`<li class="out relax "><span class="mm">Релакс</span></li>`);
     } catch (error) {
         console.error(`Ошибка: ${error.message}`);
     }
@@ -42,7 +42,6 @@ async function readContentDirectory() {
 readContentDirectory();
 
 let choiceHtml = (req) =>{
-    console.log(req.useragent);
     if (req.useragent.isMobile||req.useragent.isTablet||req.useragent.isMac){
         base = 'mobile/index.html';
     } else {
