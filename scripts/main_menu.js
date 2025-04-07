@@ -41,7 +41,7 @@ async function an_in() {
         });
         allOut = document.querySelectorAll(".out");
         env.animation(allOut);
-    }, true);
+    });
 
     async function loadMenu() {
         let response = await fetch('https://5.188.35.23?menu=menu', {
