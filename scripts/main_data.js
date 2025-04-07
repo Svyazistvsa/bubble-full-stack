@@ -46,7 +46,6 @@ document.addEventListener("pointerup", async (e) => {
     let target = e.target;
 
     if(target.classList.contains("mm")) target = target.parentElement;
-    alert(target.hasAttribute("data-name"));
     if(target.hasAttribute("data-name")){
         let name = target.dataset.name;
         await contentF(name);
