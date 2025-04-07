@@ -22,7 +22,7 @@ async function an_in() {
     
     document.addEventListener("pointerup", (e) =>{
         if(e.target !== butMenu && mainMenu.querySelector('li') && !mainMenu.querySelector('li').classList.contains('hidden')){
-            if(e.target === document.querySelector(".lines")) return ;
+            if(e.target === document.querySelector(".lines")||e.target === document.querySelector(".mm")) return ;
             mainMenu.classList.add('hidden');
             return;                        
         }
@@ -41,7 +41,7 @@ async function an_in() {
         });
         allOut = document.querySelectorAll(".out");
         env.animation(allOut);
-    });
+    }, false);
 
     async function loadMenu() {
         let response = await fetch('https://5.188.35.23?menu=menu', {
