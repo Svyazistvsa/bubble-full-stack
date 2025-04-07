@@ -207,7 +207,7 @@ aside, nav {
     min-width: 100px;
     max-width: 150px;
     margin-top: 4px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .mm {
@@ -217,6 +217,9 @@ aside, nav {
     margin: 0;
 }
 
+.mainMenu > li, .subPoint, .mm,.subPoint > a, .myGit > a,#subMenu, #mainMenu, .tile, .zag, .logo, .logo > h1 {
+    cursor: pointer;
+}
 
 .hidden {
     visibility: hidden;

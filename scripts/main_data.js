@@ -45,7 +45,7 @@ window.addEventListener("popstate", async(e) => {
 document.addEventListener("pointerup", async (e) => {   
     let target = e.target;
 
-    if(target.classList.contains("mm")) target = target.parentElement;
+    if(target.classList.contains("mm"||"zag")) target = target.parentElement;
     if(target.hasAttribute("data-name")){
         let name = target.dataset.name;
         await contentF(name);
