@@ -43,15 +43,17 @@ window.addEventListener("popstate", async(e) => {
 });
 
 document.addEventListener("pointerup", async (e) => {   
-    if(e.target.classList.contains("mm")) e.target = target.parentElement;
-    if(e.target.hasAttribute("data-name")){
+    let target = e.target;
+
+    if(target.classList.contains("mm")) target = target.parentElement;
+    if(target.hasAttribute("data-name")){
         let name = e.target.dataset.name;
         await contentF(name);
     }
-    if(e.target.classList.contains("main_content")){
+    if(target.classList.contains("main_content")){
         await res();        
     }
-    if(e.target.classList.contains("relax")){
+    if(target.classList.contains("relax")){
         relaxWork();   
     }
 });
