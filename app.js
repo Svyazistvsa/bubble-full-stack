@@ -60,7 +60,13 @@ app.use((req, res, next) => {
 app.options('*', (req, res) => {
     res.sendStatus(200);
 });
-
+app.use((req, res, next) => {
+    if (req.hostname === '5.188.35.23'){
+        res.redirect(301, `https://bubble.bl${req.originalUrl}`);
+    } else {
+        next();
+    }
+})
 app.use(express.static(__dirname));
 app.use('/scripts', express.static(path.join(__dirname, 'scripts'), {
     setHeaders: (res, path) => {
@@ -121,7 +127,7 @@ const options = {
     cert: fsSync.readFileSync('server.cert'),
 };
 
-https.createServer(options, app).listen(port, function () {
+https.createServer(options, app).listen(port, () => {
     console.log(`Сервер запущен на порту ${port}`);
 });
 
