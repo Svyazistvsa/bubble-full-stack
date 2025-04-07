@@ -51,7 +51,7 @@ document.addEventListener("pointerup", async (e) => {
         await res();        
     }
     if(e.target.classList.contains("relax")){
-      relaxWork();   
+        relaxWork();   
     }
 });
 

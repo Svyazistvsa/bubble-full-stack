@@ -20,7 +20,7 @@ async function an_in() {
     const mainMenu = document.querySelector('.mainMenu');
     
     
-    document.addEventListener("pointerdown", (e) =>{
+    document.addEventListener("pointerup", (e) =>{
         if(e.target !== butMenu && mainMenu.querySelector('li') && !mainMenu.querySelector('li').classList.contains('hidden')){
             if(e.target === document.querySelector(".lines")) return ;
             mainMenu.classList.add('hidden');

@@ -1,7 +1,6 @@
 const https = require('https');
 const express = require('express');
 const useragent = require('express-useragent');
-const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs').promises;
 const fsSync = require('fs');
