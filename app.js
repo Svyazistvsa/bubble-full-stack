@@ -6,7 +6,7 @@ const fs = require('fs').promises;
 const fsSync = require('fs');
 const cheerio = require('cheerio');
 const app = express();
-const port = 443;
+const port = 3000;
 
 let base = 'main_d.css',
     main_arr = [`<li class="out main_content"><span class="mm">Главная страница</span></li>`],
@@ -60,13 +60,13 @@ app.use((req, res, next) => {
 app.options('*', (req, res) => {
     res.sendStatus(200);
 });
-app.use((req, res, next) => {
-    if (req.hostname === '5.188.35.23'){
-        res.redirect(301, `https://bubble.bl${req.originalUrl}`);
-    } else {
-        next();
-    }
-})
+//app.use((req, res, next) => {
+//    if (req.hostname === '5.188.35.23'){
+//        res.redirect(301, `https://bubble.bl${req.originalUrl}`);
+//    } else {
+//        next();
+//    }
+//})
 app.use(express.static(__dirname));
 app.use('/scripts', express.static(path.join(__dirname, 'scripts'), {
     setHeaders: (res, path) => {
