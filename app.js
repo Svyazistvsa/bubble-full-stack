@@ -66,7 +66,8 @@ app.options('*', (req, res) => {
 //    } else {
 //        next();
 //    }
-//})
+//}) 
+
 app.use(express.static(__dirname));
 app.use('/scripts', express.static(path.join(__dirname, 'scripts'), {
     setHeaders: (res, path) => {
