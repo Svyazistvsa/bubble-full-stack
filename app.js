@@ -1,4 +1,3 @@
-//const https = require('https');
 const http = require('http');
 const express = require('express');
 const useragent = require('express-useragent');
@@ -50,24 +49,9 @@ let choiceHtml = (req) =>{
     }    
 }
 
-//app.use((req, res, next) => {
-//    res.header("Access-Control-Allow-Origin", "*");
-//    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-//    res.header("Access-Control-Allow-Headers", "Content-Type");
-//    res.header("Access-Control-Allow-Credentials", "true");
-//    next();
-//});
-
 app.options('*', (req, res) => {
     res.sendStatus(200);
 });
-//app.use((req, res, next) => {
-//    if (req.hostname === '5.188.35.23'){
-//        res.redirect(301, `https://bubble.bl${req.originalUrl}`);
-//    } else {
-//        next();
-//    }
-//}) 
 
 app.use(express.static(__dirname));
 app.use('/scripts', express.static(path.join(__dirname, 'scripts'), {
@@ -96,10 +80,8 @@ app.get("/content/:filename", (req, res) => {
 
 app.get("/", (req, res) => {    
     if (req.query.menu) {
-        //res.setHeader('Content-Type', 'application/json');
         res.json(main_arr);
     } else if(req.query.main) {
-        //res.setHeader('Content-Type', 'application/json');
         res.json(main_cont);
     } else {
         choiceHtml(req);
