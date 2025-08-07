@@ -130,7 +130,7 @@ const options = {
     cert: fsSync.readFileSync('server.cert'),
 };
 
-https.createServer(options, app).listen(port, () => {
+http.createServer(options, app).listen(port, () => {
     console.log(`Сервер запущен на порту ${port}`);
 });
 
