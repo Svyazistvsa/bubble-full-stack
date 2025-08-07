@@ -1,4 +1,5 @@
-const https = require('https');
+//const https = require('https');
+const http = require('http');
 const express = require('express');
 const useragent = require('express-useragent');
 const path = require('path');
@@ -6,7 +7,7 @@ const fs = require('fs').promises;
 const fsSync = require('fs');
 const cheerio = require('cheerio');
 const app = express();
-const port = 443;
+const port = 80;
 
 let base = 'main_d.css',
     main_arr = [`<li class="out main_content"><span class="mm">Главная страница</span></li>`],
