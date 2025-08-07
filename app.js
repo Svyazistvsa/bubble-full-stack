@@ -86,7 +86,7 @@ app.get("/", (req, res) => {
     } else {
         choiceHtml(req);
         res.sendFile(path.join(__dirname, 'css', base));
-        //console.log(req.hostname);
+        console.log(req.hostname);
     }
 });
 
