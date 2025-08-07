@@ -130,7 +130,7 @@ app.post('/content', (req, res) =>{
 //    cert: fsSync.readFileSync('server.cert'),
 //};
 
-http.createServer(options, app).listen(port, () => {
+http.createServer(/*options,*/ app).listen(port, () => {
     console.log(`Сервер запущен на порту ${port}`);
 });
 
