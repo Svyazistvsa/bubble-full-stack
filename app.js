@@ -50,13 +50,13 @@ let choiceHtml = (req) =>{
     }    
 }
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type");
-    res.header("Access-Control-Allow-Credentials", "true");
-    next();
-});
+//app.use((req, res, next) => {
+//    res.header("Access-Control-Allow-Origin", "*");
+//    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+//    res.header("Access-Control-Allow-Headers", "Content-Type");
+//    res.header("Access-Control-Allow-Credentials", "true");
+//    next();
+//});
 
 app.options('*', (req, res) => {
     res.sendStatus(200);
@@ -96,10 +96,10 @@ app.get("/content/:filename", (req, res) => {
 
 app.get("/", (req, res) => {    
     if (req.query.menu) {
-        res.setHeader('Content-Type', 'application/json');
+        //res.setHeader('Content-Type', 'application/json');
         res.json(main_arr);
     } else if(req.query.main) {
-        res.setHeader('Content-Type', 'application/json');
+        //res.setHeader('Content-Type', 'application/json');
         res.json(main_cont);
     } else {
         choiceHtml(req);
@@ -125,12 +125,7 @@ app.post('/content', (req, res) =>{
     res.sendFile(path.join(__dirname, 'content', req.body.name));
 });
 
-//const options = {
-//    key: fsSync.readFileSync('server.key'), 
-//    cert: fsSync.readFileSync('server.cert'),
-//};
-
-http.createServer(/*options,*/ app).listen(port, () => {
+http.createServer(app).listen(port, () => {
     console.log(`Сервер запущен на порту ${port}`);
 });
 
