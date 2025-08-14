@@ -44,7 +44,7 @@ async function an_in() {
     });
 
     async function loadMenu() {
-        let response = await fetch('https://my-bubble.ru?menu=menu', {
+        let response = await fetch('/?menu=menu', {
             method: 'GET',
             headers: { "Content-Type": "application/json" },
         });
