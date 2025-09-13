@@ -8,7 +8,7 @@ heads, env, allOut;
 
 ul.classList.add("subUl");
 
-    aside.addEventListener("pointerdown", async () => {
+    subMenu.addEventListener("pointerdown", async () => {
         
         if(document.getElementById("desctop")){
             env = await import ("./animation_interface.js");
@@ -48,7 +48,8 @@ subMenu.addEventListener("pointerdown",async (e) => {
 })
 
 document.addEventListener("pointerup", (e) =>{
-    if(e.target !== subMenu && ul.querySelector('li') && !ul.querySelector('li').classList.contains('hidden')){
+    if(e.target !== subMenu && !ul.classList.contains("hidden")){
+        if(e.target.tagName === "A" || !aside.querySelector("ul")) return;
         aside.querySelector("ul").classList.add("hidden");
     }
 })
