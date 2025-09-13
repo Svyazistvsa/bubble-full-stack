@@ -4,7 +4,7 @@ const content = document.getElementsByTagName("main")[0];
 const aside = document.getElementsByTagName("aside")[0];
 const subMenu = document.querySelector("#subMenu");
 let ul = document.createElement("ul"),
-    heads, env, allOut;
+heads, env, allOut;
 
 ul.classList.add("subUl");
 
@@ -45,6 +45,12 @@ subMenu.addEventListener("pointerdown",async (e) => {
         return;
     }
     aside.append(ul);
+})
+
+document.addEventListener("pointerup", (e) =>{
+    if(e.target !== subMenu && ul.querySelector('li') && !ul.querySelector('li').classList.contains('hidden')){
+        aside.querySelector("ul").classList.add("hidden");
+    }
 })
 
 
