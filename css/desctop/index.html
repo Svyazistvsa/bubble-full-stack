@@ -58,5 +58,15 @@
     </div>
     <script type="module" src="/scripts/animation_interface.js"></script>
     <script src="/scripts/bubble-generator.js"></script>
+    <script>
+        function widthCheck (){
+            if(window.innerWidth < 1250){
+                window.scrollTo(240, 0);
+            }
+        }
+        widthCheck();
+        window.addEventListener("resize", () => widthCheck());
+        
+    </script>
 </body>
 </html>
